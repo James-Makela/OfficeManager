@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.DateTime;
 
 namespace IOTDatabaseTraveller
 {
@@ -115,6 +116,45 @@ namespace IOTDatabaseTraveller
         {
             string sqlQuery = "DELETE FROM employees WHERE id={0}";
             sqlQuery = string.Format(sqlQuery, oldEmployee.ID);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.Close();
+            }
+        }
+
+        public void EditEmployee(Employee changedEmployee)
+        {
+            string sqlQuery = @"UPDATE employees
+                                SET 
+                                    given_name='{0}',
+                                    family_name='{1}',
+                                    date_of_birth=""{2}"",
+                                    gender_identity='{3}',
+                                    gross_salary={4},
+                                    supervisor_id={5},
+                                    branch_id={6},
+                                    updated_at=""{7}""
+                                WHERE 
+                                    id={8}";
+            sqlQuery = string.Format(sqlQuery, 
+                                        changedEmployee.FirstName,
+                                        changedEmployee.LastName,
+                                        changedEmployee.DateOfBirth,
+                                        changedEmployee.Gender,
+                                        changedEmployee.Salary,
+                                        changedEmployee.SupervisorID,
+                                        changedEmployee.BranchID,
+                                        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                        changedEmployee.ID
+                                        );
             try
             {
                 conn.Open();
