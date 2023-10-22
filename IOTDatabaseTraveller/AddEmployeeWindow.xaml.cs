@@ -34,7 +34,6 @@ namespace IOTDatabaseTraveller
 
         private Employee CreateEmployeeFromForms()
         {
-            int.TryParse(TextBox_EmployeeID.Text, out int id);
             decimal.TryParse(TextBox_EmployeeSalary.Text, out decimal salary);
             int.TryParse(TextBox_EmployeeSupervisorID.Text, out int supervisorId);
             int.TryParse(TextBox_EmployeeBranchID.Text, out int branchId);
@@ -46,8 +45,6 @@ namespace IOTDatabaseTraveller
 
             Employee employee = new Employee()
             {
-                
-                ID = id,
                 FirstName = TextBox_EmployeeFirstName.Text,
                 LastName = TextBox_EmployeeLastName.Text,
                 DateOfBirth = (DateTime)TextBox_EmployeeDateOfBirth.SelectedDate,
@@ -60,6 +57,11 @@ namespace IOTDatabaseTraveller
             };
             
             return employee;
+        }
+
+        private void Button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

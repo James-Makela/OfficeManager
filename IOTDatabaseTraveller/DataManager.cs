@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.DateTime;
 
 namespace IOTDatabaseTraveller
 {
@@ -85,17 +84,26 @@ namespace IOTDatabaseTraveller
 
         public void AddEmployee(Employee newEmployee)
         {
-            string sqlQuery = @"INSERT INTO employees VALUES
-                                ({0}, '{1}', '{2}', ""{3}"", '{4}', {5}, {6}, {7}, ""{8}"", null)";
-            sqlQuery = string.Format(sqlQuery, newEmployee.ID,
-                    newEmployee.FirstName,
-                    newEmployee.LastName,
-                    newEmployee.DateOfBirth.ToString("yyyy-MM-dd"),
-                    newEmployee.Gender,
-                    newEmployee.Salary,
-                    newEmployee.SupervisorID,
-                    newEmployee.BranchID,
-                    newEmployee.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")
+            string sqlQuery = @"INSERT INTO employees (
+                                            given_name,
+                                            family_name,
+                                            date_of_birth,
+                                            gender_identity,
+                                            gross_salary,
+                                            supervisor_id,
+                                            branch_id,
+                                            created_at) 
+                                        VALUES
+                                            ('{0}', '{1}', ""{2}"", '{3}', {4}, {5}, {6}, ""{7}"")";
+            sqlQuery = string.Format(sqlQuery,
+                                            newEmployee.FirstName,
+                                            newEmployee.LastName,
+                                            newEmployee.DateOfBirth.ToString("yyyy-MM-dd"),
+                                            newEmployee.Gender,
+                                            newEmployee.Salary,
+                                            newEmployee.SupervisorID,
+                                            newEmployee.BranchID,
+                                            newEmployee.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")
                     );
             
             try

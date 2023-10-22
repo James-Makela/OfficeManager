@@ -17,7 +17,6 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Label Content="ID:" HorizontalContentAlignment="Right"/>
             <Label Content="First Name:" HorizontalContentAlignment="Right"/>
             <Label Content="Last Name:" HorizontalContentAlignment="Right"/>
             <Label Content="Date Of Birth:" HorizontalContentAlignment="Right"/>
@@ -27,7 +26,6 @@
             <Label Content="BranchID:" HorizontalContentAlignment="Right"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <TextBox x:Name="TextBox_EmployeeID" HorizontalAlignment="Left" Width="200" Margin="4"/>
             <TextBox x:Name="TextBox_EmployeeFirstName" HorizontalAlignment="Left" Width="200" Margin="4"/>
             <TextBox x:Name="TextBox_EmployeeLastName" HorizontalAlignment="Left" Width="200" Margin="4"/>
             <DatePicker x:Name="TextBox_EmployeeDateOfBirth" HorizontalAlignment="Left" Width="200" Margin="4"/>
@@ -37,7 +35,7 @@
             <TextBox x:Name="TextBox_EmployeeBranchID" HorizontalAlignment="Left" Width="200" Margin="4"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center"/>
+            <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center" Click="Button_Cancel_Click"/>
             <Button x:Name="Button_AddEmployee" Content="Add" Margin="5" VerticalAlignment="Center" Click="Button_AddEmployee_Click"/>
         </StackPanel>
         

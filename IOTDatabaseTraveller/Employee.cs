@@ -8,7 +8,7 @@ namespace IOTDatabaseTraveller
 {
     public class Employee
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -21,7 +21,7 @@ namespace IOTDatabaseTraveller
 
         public Employee() { }
 
-        public Employee(int iD, string firstName, string lastName, DateTime dateOfBirth, string gender, decimal salary, int supervisorID, int branchID, DateTime createdAt, DateTime? lastUpdatedAt)
+        public Employee(string firstName, string lastName, DateTime dateOfBirth, string gender, decimal salary, int supervisorID, int branchID, DateTime createdAt, DateTime? lastUpdatedAt, int? iD = null)
         {
             ID = iD;
             FirstName = firstName;
