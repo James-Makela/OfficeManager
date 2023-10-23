@@ -52,10 +52,16 @@ namespace IOTDatabaseTraveller
 
         private void Button_RemoveEmployee_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new ConfirmationDialog();
             Employee? selectedEmployee = ListView_Employees.SelectedItem as Employee;
             if (selectedEmployee != null)
             {
-                manager.RemoveEmployee(selectedEmployee);
+                bool? dialogResult = dialog.ShowDialog();
+                if (dialogResult == true)
+                {
+                    manager.RemoveEmployee(selectedEmployee);
+                }
+                
             }
             ReloadEmployees();
         }
