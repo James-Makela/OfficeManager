@@ -24,17 +24,23 @@ namespace IOTDatabaseTraveller
         public MainWindow()
         {
             InitializeComponent();
+            Page homePage = new HomePage();
+            PageHolder.Content = homePage;
         }
 
         private void Button_ShowEmployees_Click(object sender, RoutedEventArgs e)
         {
             Page employees = new Employees();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Employees";
             PageHolder.Content = employees;
         }
 
         private void Button_Home_Click(object sender, RoutedEventArgs e)
         {
             Page homePage = new HomePage();
+            Image_SmallLogo.Visibility = Visibility.Hidden;
+            Label_PageTitle.Content = "Home";
             PageHolder.Content = homePage;
         }
     }

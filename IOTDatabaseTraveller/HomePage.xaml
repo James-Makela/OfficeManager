@@ -6,9 +6,11 @@
       xmlns:local="clr-namespace:IOTDatabaseTraveller"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomePage">
+      Title="HomePage"
+      ShowsNavigationUI="False">
 
     <Grid>
-        
+        <Image Source="Images/iotlogo.png"/>
+
     </Grid>
 </Page>

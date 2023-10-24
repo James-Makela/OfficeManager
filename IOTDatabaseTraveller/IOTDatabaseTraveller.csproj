@@ -8,7 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\iotlogo.png" />
+    <None Remove="Images\iotlogo2.svg" />
+    <None Remove="Images\iotlogosmall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\iotlogo.png" />
+    <Resource Include="Images\iotlogo2.svg" />
+    <Resource Include="Images\iotlogosmall.png" />
   </ItemGroup>
 
 </Project>

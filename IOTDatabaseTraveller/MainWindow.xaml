@@ -5,17 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IOTDatabaseTraveller"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="900" Width="1280"
+        Icon="Images/iotlogosmall.png"
+        Background="#DDDDDD">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-            <Button x:Name="Button_Home" Content="Home" Margin="5" Click="Button_Home_Click"/>
+        <Image x:Name="Image_SmallLogo" Source="Images/iotlogo.png"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" Visibility="Hidden" Width="50"/>
+        <Label x:Name="Label_PageTitle" Content="Home" Grid.Column="1" Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+            <Button x:Name="Button_Home" Content="Home" Margin="5" Click="Button_Home_Click" Width="140"/>
             <Button x:Name="Button_ShowEmployees" Content="Employees" Margin="5" Click="Button_ShowEmployees_Click"/>
         </StackPanel>
         
-        <Frame x:Name="PageHolder" Grid.Row="1"/>
+        <Frame x:Name="PageHolder" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

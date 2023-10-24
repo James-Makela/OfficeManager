@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:IOTDatabaseTraveller"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Employees">
+      Title="Employees"
+      ShowsNavigationUI="False"
+      Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,9 +16,61 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="125"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
+        <GroupBox Header="Search" Grid.Column="1" Margin="10">
+            <Grid>
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Top">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="ID:"/>
+                        <TextBox x:Name="TextBox_SearchID" Height="23" Width="50"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="First Name:" Margin="10,0,0,0"/>
+                        <TextBox x:Name="TextBox_SearchName" Height="23" Width="75"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Last Name:" Margin="10,0,0,0"/>
+                        <TextBox x:Name="TextBox_SearchLastName" Height="23" Width="75"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="DOB:" Margin="10,0,0,0"/>
+                        <DatePicker x:Name="DatePicker_DOB" Height="23"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Gender:"/>
+                        <TextBox x:Name="TextBox_Gender" Height="23" Width="50"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Salary Range ($):" Margin="10,0,0,0"/>
+                        <TextBox x:Name="TextBox_SalaryLow" Height="23" Width="50"/>
+                        <Label Content="->"/>
+                        <TextBox x:Name="TextBox_SalaryHigh" Height="23" Width="50"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Supervisor:" Margin="10,0,0,0"/>
+                        <ComboBox x:Name="ComboBox_Supervisor" Height="23" Width="75"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Branch:"/>
+                        <ComboBox x:Name="ComboBox_Branch" Height="23" Width="50"/>
+                    </StackPanel>
+                </WrapPanel>
+                
+
+                <Button x:Name="Button_SearchEmployee" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"/>
+            </Grid>
+        </GroupBox>
 
         <!-- Code for the listview for employees data -->
         <ListView x:Name="ListView_Employees" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
@@ -36,8 +90,11 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="Button_ReloadData" Content="Reload Data" Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_ReloadData_Click"/>
-        <Button x:Name="Button_AddEmployee" Content="Add Employee" Grid.Column="0" Grid.Row="1" Margin="10, 50" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_AddEmployee_Click"/>
-        <Button x:Name="Button_RemoveEmployee" Content="Remove Employee" Grid.Column="0" Grid.Row="1" Margin="10, 90" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_RemoveEmployee_Click"/>
+        <StackPanel Orientation="Vertical" Grid.RowSpan="2" VerticalAlignment="Center">
+            <Button x:Name="Button_ReloadData" Content="Reload Data" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_ReloadData_Click"/>
+            <Button x:Name="Button_AddEmployee" Content="Add Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_AddEmployee_Click"/>
+            <Button x:Name="Button_RemoveEmployee" Content="Remove Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_RemoveEmployee_Click"/>
+        </StackPanel>
+           
     </Grid> 
 </Page>
