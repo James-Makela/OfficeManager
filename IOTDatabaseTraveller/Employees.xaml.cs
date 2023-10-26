@@ -21,7 +21,7 @@ namespace IOTDatabaseTraveller
     public partial class Employees : Page
     {
 
-        DataManager manager = new();
+        DataManager manager = ((App)Application.Current).manager;
         public Employees()
         {
             InitializeComponent();

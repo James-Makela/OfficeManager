@@ -13,5 +13,6 @@ namespace IOTDatabaseTraveller
     /// </summary>
     public partial class App : Application
     {
+        public DataManager manager = new();
     }
 }

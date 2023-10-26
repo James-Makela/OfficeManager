@@ -19,7 +19,7 @@ namespace IOTDatabaseTraveller
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
-        DataManager manager = new();
+        DataManager manager = ((App)Application.Current).manager;
         public AddEmployeeWindow()
         {
             InitializeComponent();

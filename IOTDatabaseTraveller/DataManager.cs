@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace IOTDatabaseTraveller
 {
-    internal class DataManager
+    public class DataManager
     {
         List<Employee> employees = new();
 
