@@ -11,7 +11,7 @@ namespace IOTDatabaseTraveller
 {
     public class DataManager
     {
-        List<Employee> employees = new();
+        public List<Employee> employees = new();
 
         string dbName = "jim_ictprg431";
         string dbUser = "JIM-ictprg431_james";
@@ -28,10 +28,9 @@ namespace IOTDatabaseTraveller
             conn = new MySqlConnection(DbConnectionString);
         }
 
-        public List<Employee> GetEmployees()
+        public List<Employee> GetEmployees(string sqlQuery="SELECT * FROM employees")
         {
             employees.Clear();
-            string sqlQuery = "SELECT * FROM employees";
 
             try
             {
@@ -95,15 +94,17 @@ namespace IOTDatabaseTraveller
                                             created_at) 
                                         VALUES
                                             ('{0}', '{1}', ""{2}"", '{3}', {4}, {5}, {6}, ""{7}"")";
+            string dob = ((DateTime)newEmployee.DateOfBirth).ToString("yyyy-MM-dd");
+            string createdAt = ((DateTime)newEmployee.CreatedAt).ToString("yyyy-MM-dd HH:mm:ss");
             sqlQuery = string.Format(sqlQuery,
                                             newEmployee.FirstName,
                                             newEmployee.LastName,
-                                            newEmployee.DateOfBirth.ToString("yyyy-MM-dd"),
+                                            dob,
                                             newEmployee.Gender,
                                             newEmployee.Salary,
                                             newEmployee.SupervisorID,
                                             newEmployee.BranchID,
-                                            newEmployee.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")
+                                            createdAt
                     );
             
             try
@@ -175,6 +176,77 @@ namespace IOTDatabaseTraveller
                 MessageBox.Show(ex.Message);
                 conn.Close();
             }
+        }
+
+        public List<ComboBoxItem> GetBranchNames()
+        {
+            string sqlQuery = "SELECT branch_name, id FROM branches";
+            List<ComboBoxItem> branchNames = new();
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int.TryParse($"{reader[1].ToString}", out int branchId);
+                    string branchName = reader[0].ToString();
+                    ComboBoxItem branchname = new ComboBoxItem(branchName, branchId);
+                    branchNames.Add(branchname);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            conn.Close();
+            return branchNames;
+        }
+
+        public List<ComboBoxItem> GetSupervisorNames()
+        {
+            string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name) 
+                                    AS name, id FROM employees 
+                                    WHERE id IN (SELECT supervisor_id FROM employees);";
+            List<ComboBoxItem> supervisorNames = new();
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int.TryParse($"{reader[1].ToString}", out int id);
+                    string name = reader[0].ToString();
+                    ComboBoxItem comboBoxItem = new ComboBoxItem(name, id);
+
+                    supervisorNames.Add(comboBoxItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+            return supervisorNames;
+        }
+
+        public List<Employee> SearchEmployees(Employee searchParams)
+        {
+            if (searchParams.ID == 0)
+            {
+                searchParams.ID = null;
+            }
+            
+            string searchQuery = @"SELECT * FROM employees
+                                    WHERE (id LIKE ""{0}"") or (""{0}"" is null)
+                                    AND (given_name LIKE ""%{1}%"") or (""{1}"" is null)";
+            searchQuery = string.Format(searchQuery,
+                    searchParams.ID.ToString(), searchParams.FirstName);
+
+            List<Employee> employees = GetEmployees(searchQuery);
+            return employees;
         }
 
     }

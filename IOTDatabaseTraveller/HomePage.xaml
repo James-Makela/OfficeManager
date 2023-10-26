@@ -10,7 +10,7 @@
       ShowsNavigationUI="False">
 
     <Grid>
-        <Image Source="Images/iotlogo.png"/>
+        <Image Source="Images/iotlogo.png" Opacity="0.5"/>
 
     </Grid>
 </Page>

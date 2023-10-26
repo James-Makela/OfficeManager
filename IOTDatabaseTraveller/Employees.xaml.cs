@@ -25,17 +25,16 @@ namespace IOTDatabaseTraveller
         public Employees()
         {
             InitializeComponent();
-        }
-
-        private void Button_ReloadData_Click(object sender, RoutedEventArgs e)
-        {
             ReloadEmployees();
         }
+
+
 
         private void ReloadEmployees()
         {
             ListView_Employees.DataContext = null;
             ListView_Employees.DataContext = manager.GetEmployees();
+            PopulateSearchCombos();
         }
 
         private void Button_AddEmployee_Click(object sender, RoutedEventArgs e)
@@ -63,8 +62,49 @@ namespace IOTDatabaseTraveller
             ReloadEmployees();
         }
 
+        private void PopulateSearchCombos()
+        {
+            foreach (Employee employee in manager.employees)
+            {
+                    ComboBox_Supervisor.ItemsSource = manager.GetSupervisorNames();
+                    ComboBox_Branch.ItemsSource = manager.GetBranchNames();
+            }
+        }
+
         private void Button_SearchEmployee_Click(object sender, RoutedEventArgs e)
         {
+            int.TryParse(TextBox_SearchID.Text, out int searchId);
+            decimal.TryParse(TextBox_SalaryLow.Text, out decimal searchSalaryLow);
+            decimal.TryParse(TextBox_SalaryHigh.Text, out decimal searchSalaryHigh);
+            int? supervisorID = null;
+            int? branchId = null;
+            DateTime? dob = null;
+            if (ComboBox_Supervisor.SelectedItem != null)
+            {
+                supervisorID = ((ComboBoxItem)ComboBox_Supervisor.SelectedItem).GetID();
+            }
+            if (ComboBox_Branch.SelectedItem != null)
+            {
+                branchId = ((ComboBoxItem)ComboBox_Branch.SelectedItem).GetID();
+            }
+            if (DatePicker_DOB.SelectedDate != null)
+            {
+                dob = (DateTime)DatePicker_DOB.SelectedDate;
+            }
+            
+            Employee searchEmployee = new()
+            {
+                ID = searchId,
+                FirstName = TextBox_SearchName.Text,
+                LastName = TextBox_SearchLastName.Text,
+                DateOfBirth = dob,
+                Gender = TextBox_Gender.Text,
+                SupervisorID = supervisorID,
+                BranchID = branchId
+            };
+
+            ListView_Employees.DataContext = null;
+            ListView_Employees.DataContext = manager.SearchEmployees(searchEmployee);
 
         }
     }

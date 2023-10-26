@@ -91,7 +91,6 @@
         </ListView>
 
         <StackPanel Orientation="Vertical" Grid.RowSpan="2" VerticalAlignment="Center">
-            <Button x:Name="Button_ReloadData" Content="Reload Data" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_ReloadData_Click"/>
             <Button x:Name="Button_AddEmployee" Content="Add Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_AddEmployee_Click"/>
             <Button x:Name="Button_RemoveEmployee" Content="Remove Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_RemoveEmployee_Click"/>
         </StackPanel>
