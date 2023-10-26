@@ -46,6 +46,7 @@ namespace IOTDatabaseTraveller
         private void Button_AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             AddEmployeeWindow addEmployeeWindow = new();
+            addEmployeeWindow.Owner = Application.Current.MainWindow;
             addEmployeeWindow.ShowDialog();
             ReloadEmployees();
         }
@@ -53,6 +54,7 @@ namespace IOTDatabaseTraveller
         private void Button_RemoveEmployee_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new ConfirmationDialog();
+            dialog.Owner = Application.Current.MainWindow;
             Employee? selectedEmployee = ListView_Employees.SelectedItem as Employee;
             if (selectedEmployee != null)
             {

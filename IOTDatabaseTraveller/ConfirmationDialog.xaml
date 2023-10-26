@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IOTDatabaseTraveller"
         mc:Ignorable="d"
-        Title="ConfirmationDialog" Height="110" Width="250">
+        Title="ConfirmationDialog" Height="110" Width="250"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30"/>

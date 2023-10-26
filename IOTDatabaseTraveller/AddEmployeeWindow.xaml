@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IOTDatabaseTraveller"
         mc:Ignorable="d"
-        Title="AddEmployeeWindow" Height="350" Width="400">
+        Title="AddEmployeeWindow" Height="350" Width="400"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -35,8 +36,8 @@
             <TextBox x:Name="TextBox_EmployeeBranchID" HorizontalAlignment="Left" Width="200" Margin="4"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center" Click="Button_Cancel_Click"/>
-            <Button x:Name="Button_AddEmployee" Content="Add" Margin="5" VerticalAlignment="Center" Click="Button_AddEmployee_Click"/>
+            <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center" IsCancel="True" Click="Button_Cancel_Click"/>
+            <Button x:Name="Button_AddEmployee" Content="Add" Margin="5" VerticalAlignment="Center" IsDefault="True" Click="Button_AddEmployee_Click"/>
         </StackPanel>
         
 
