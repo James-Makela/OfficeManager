@@ -233,17 +233,33 @@ namespace IOTDatabaseTraveller
         }
 
         public List<Employee> SearchEmployees(Employee searchParams)
-        {
-            if (searchParams.ID == 0)
-            {
-                searchParams.ID = null;
-            }
-            
+        {   
             string searchQuery = @"SELECT * FROM employees
-                                    WHERE (id LIKE ""{0}"") or (""{0}"" is null)
-                                    AND (given_name LIKE ""%{1}%"") or (""{1}"" is null)";
+                                    WHERE {0}";
+            
+            string searchID = "";
+            string searchFirstName = "";
+            string searchLastName = "";
+
+            if (searchParams.ID != 0)
+            {
+                searchID = string.Format(" id={0}", searchParams.ID);
+            }
+            if (searchParams.FirstName != null)
+            {
+                searchFirstName = string.Format(" AND given_name={0}", searchParams.FirstName);
+            }
+            if (searchParams.LastName != null)
+            {
+                searchLastName = string.Format(" AND last_name={0}", searchParams.LastName);
+            }
+
+
+
+            string whereClause = searchID + 
+
             searchQuery = string.Format(searchQuery,
-                    searchParams.ID.ToString(), searchParams.FirstName);
+                    whereClause);
 
             List<Employee> employees = GetEmployees(searchQuery);
             return employees;
