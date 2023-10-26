@@ -38,11 +38,6 @@ namespace IOTDatabaseTraveller
             ListView_Employees.DataContext = manager.GetEmployees();
         }
 
-        private void Button_Back_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void Button_AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             AddEmployeeWindow addEmployeeWindow = new();
@@ -66,6 +61,11 @@ namespace IOTDatabaseTraveller
                 
             }
             ReloadEmployees();
+        }
+
+        private void Button_SearchEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -68,7 +68,7 @@
                 </WrapPanel>
                 
 
-                <Button x:Name="Button_SearchEmployee" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"/>
+                <Button x:Name="Button_SearchEmployee" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" Click="Button_SearchEmployee_Click"/>
             </Grid>
         </GroupBox>
 
