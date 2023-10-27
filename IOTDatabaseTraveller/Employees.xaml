@@ -40,11 +40,6 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="DOB:" Margin="10,0,0,0"/>
-                        <DatePicker x:Name="DatePicker_DOB" Height="23"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
                         <Label Content="Gender:"/>
                         <TextBox x:Name="TextBox_Gender" Height="23" Width="50"/>
                     </StackPanel>
@@ -68,7 +63,8 @@
                 </WrapPanel>
                 
 
-                <Button x:Name="Button_SearchEmployee" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" Click="Button_SearchEmployee_Click"/>
+                <Button x:Name="Button_SearchEmployee" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" IsDefault="True" Click="Button_SearchEmployee_Click"/>
+                <Button x:Name="Button_ClearSearch" Content="Clear" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Click="Button_ClearSearch_Click"/>
             </Grid>
         </GroupBox>
 

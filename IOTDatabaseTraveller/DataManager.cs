@@ -181,7 +181,10 @@ namespace IOTDatabaseTraveller
         public List<ComboBoxItem> GetBranchNames()
         {
             string sqlQuery = "SELECT branch_name, id FROM branches";
-            List<ComboBoxItem> branchNames = new();
+            List<ComboBoxItem> branchNames = new()
+            {
+                new ComboBoxItem("All", 0)
+            };
             try
             {
                 conn.Open();
@@ -189,7 +192,7 @@ namespace IOTDatabaseTraveller
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[1].ToString}", out int branchId);
+                    int.TryParse($"{reader[1]}", out int branchId);
                     string branchName = reader[0].ToString();
                     ComboBoxItem branchname = new ComboBoxItem(branchName, branchId);
                     branchNames.Add(branchname);
@@ -209,7 +212,10 @@ namespace IOTDatabaseTraveller
             string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name) 
                                     AS name, id FROM employees 
                                     WHERE id IN (SELECT supervisor_id FROM employees);";
-            List<ComboBoxItem> supervisorNames = new();
+            List<ComboBoxItem> supervisorNames = new()
+            {
+                new ComboBoxItem("All", 0)
+            };
             try
             {
                 conn.Open();
@@ -217,7 +223,7 @@ namespace IOTDatabaseTraveller
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[1].ToString}", out int id);
+                    int.TryParse($"{reader[1]}", out int id);
                     string name = reader[0].ToString();
                     ComboBoxItem comboBoxItem = new ComboBoxItem(name, id);
 
@@ -232,36 +238,68 @@ namespace IOTDatabaseTraveller
             return supervisorNames;
         }
 
-        public List<Employee> SearchEmployees(Employee searchParams)
+        public List<Employee> SearchEmployees(Employee searchParams, decimal low, decimal high)
         {   
             string searchQuery = @"SELECT * FROM employees
-                                    WHERE {0}";
+                                    WHERE";
             
             string searchID = "";
             string searchFirstName = "";
             string searchLastName = "";
+            string searchGender = "";
+            string searchLow = "";
+            string searchHigh = "";
+            string searchSupervisor = "";
+            string searchBranch = "";
+            string andString = "";
 
             if (searchParams.ID != 0)
             {
                 searchID = string.Format(" id={0}", searchParams.ID);
+                andString = "AND ";
             }
-            if (searchParams.FirstName != null)
+            if (searchParams.FirstName != null && searchParams.FirstName != "")
             {
-                searchFirstName = string.Format(" AND given_name={0}", searchParams.FirstName);
+                searchFirstName = string.Format(@" {0}given_name LIKE ""%{1}%""",andString, searchParams.FirstName);
+                andString = "AND ";
             }
-            if (searchParams.LastName != null)
+            if (searchParams.LastName != null && searchParams.LastName != "")
             {
-                searchLastName = string.Format(" AND last_name={0}", searchParams.LastName);
+                searchLastName = string.Format(@" {0}family_name LIKE ""%{1}%""",andString, searchParams.LastName);
+                andString = "AND ";
+            }
+            if (searchParams.Gender != null && searchParams.Gender != "")
+            {
+                searchGender = string.Format(@" {0}gender_identity LIKE ""{1}""",andString, searchParams.Gender);
+                andString = "AND ";
+            }
+            if (low != 0)
+            {
+                searchLow = string.Format(@" {0}gross_salary >= {1}", andString, low);
+                andString = "AND ";
+            }
+            if (high != 0)
+            {
+                searchHigh = string.Format(@" {0}gross_salary <= {1}", andString, high);
+                andString = "AND ";
+            }
+            if (searchParams.SupervisorID != null && searchParams.SupervisorID != 0)
+            {
+                searchSupervisor = string.Format(@" {0}supervisor_id={1}", andString, searchParams.SupervisorID);
+                andString = "AND ";
+            }
+            if (searchParams.BranchID != null && searchParams.BranchID != 0)
+            {
+                searchBranch = string.Format(@" {0}branch_id={1}", andString, searchParams.BranchID);
             }
 
 
 
-            string whereClause = searchID + 
+            string fullSearch = searchQuery + searchID + searchFirstName + searchLastName + searchGender +
+                searchLow + searchHigh + searchSupervisor + searchBranch;
 
-            searchQuery = string.Format(searchQuery,
-                    whereClause);
 
-            List<Employee> employees = GetEmployees(searchQuery);
+            List<Employee> employees = GetEmployees(fullSearch);
             return employees;
         }
 

@@ -67,7 +67,9 @@ namespace IOTDatabaseTraveller
             foreach (Employee employee in manager.employees)
             {
                     ComboBox_Supervisor.ItemsSource = manager.GetSupervisorNames();
+                    ComboBox_Supervisor.SelectedIndex = 0;
                     ComboBox_Branch.ItemsSource = manager.GetBranchNames();
+                    ComboBox_Branch.SelectedIndex = 0;
             }
         }
 
@@ -87,10 +89,6 @@ namespace IOTDatabaseTraveller
             {
                 branchId = ((ComboBoxItem)ComboBox_Branch.SelectedItem).GetID();
             }
-            if (DatePicker_DOB.SelectedDate != null)
-            {
-                dob = (DateTime)DatePicker_DOB.SelectedDate;
-            }
             
             Employee searchEmployee = new()
             {
@@ -103,8 +101,21 @@ namespace IOTDatabaseTraveller
                 BranchID = branchId
             };
 
+            if (searchEmployee.ID == 0 && searchEmployee.FirstName == "" && searchEmployee.LastName == "" &&
+                searchEmployee.Gender == "" && searchEmployee.SupervisorID == 0 && searchEmployee.BranchID == 0 &&
+                searchSalaryLow == 0 && searchSalaryHigh == 0)
+            {
+                ReloadEmployees();
+                return;
+            }
+
             ListView_Employees.DataContext = null;
-            ListView_Employees.DataContext = manager.SearchEmployees(searchEmployee);
+            ListView_Employees.DataContext = manager.SearchEmployees(searchEmployee, searchSalaryLow, searchSalaryHigh);
+
+        }
+
+        private void Button_ClearSearch_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
