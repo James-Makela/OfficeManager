@@ -116,7 +116,15 @@ namespace IOTDatabaseTraveller
 
         private void Button_ClearSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            TextBox_SearchID.Text = null;
+            TextBox_SearchName.Text = null;
+            TextBox_SearchLastName.Text = null;
+            TextBox_Gender.Text = null;
+            TextBox_SalaryLow.Text = null;
+            TextBox_SalaryHigh.Text = null;
+            ComboBox_Supervisor.SelectedIndex = 0;
+            ComboBox_Branch.SelectedIndex = 0;
+            ReloadEmployees();
         }
     }
 }
