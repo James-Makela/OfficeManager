@@ -11,11 +11,11 @@ namespace IOTDatabaseTraveller.Datamanager
 {
     public partial class DataManager
     {
-        public List<Client> clients = new();
-
-        public List<Client> GetClients(string sqlQuery = "SELECT * FROM clients")
+        List<Branch> branches = new();
+        
+        public List<Branch> GetBranches(string sqlQuery = "SELECT * FROM branches")
         {
-            clients.Clear();
+            branches.Clear();
 
             try
             {
@@ -25,12 +25,8 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    // need to parse branch id, supplier id
-                    int.TryParse(reader[0].ToString(), out int id);
-                    int.TryParse(reader[2].ToString(), out int branchId);
-
                     DateTime? lastUpdated;
-                    if (reader[4] == DBNull.Value)
+                    if (reader[5] == DBNull.Value)
                     {
                         lastUpdated = null;
                     }
@@ -39,16 +35,16 @@ namespace IOTDatabaseTraveller.Datamanager
                         lastUpdated = (DateTime)reader[5];
                     }
 
-                    Client client = new()
+                    Branch branch = new()
                     {
-                        ID = id,
-                        ClientName = reader[1].ToString(),
-                        BranchID = branchId,
-                        CreatedAt = (DateTime)reader[3],
-                        UpdatedAt = lastUpdated
-                        
+                        ID = reader.GetInt32(0),
+                        BranchName = reader.GetString(1),
+                        ManagerID = reader.GetInt32(2),
+                        ManagerStartedAt = reader.GetDateTime(3),
+                        CreatedAt = reader.GetDateTime(4),
+                        UpdatedAt = lastUpdated,
                     };
-                    clients.Add(client);
+                    branches.Add(branch);
                 }
             }
             catch (Exception ex)
@@ -57,7 +53,7 @@ namespace IOTDatabaseTraveller.Datamanager
             }
 
             conn.Close();
-            return clients;
+            return branches;
         }
     }
 }

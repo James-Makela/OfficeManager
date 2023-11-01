@@ -25,8 +25,8 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[0]}", out int branchID);
-                    int.TryParse($"{reader[1]}", out int supplierID);
+                    int.TryParse(reader[0].ToString(), out int branchID);
+                    int.TryParse(reader[1].ToString(), out int supplierID);
 
                     DateTime? lastUpdated;
                     if (reader[5] == DBNull.Value)

@@ -26,10 +26,10 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[0]}", out int id);
-                    decimal.TryParse($"{reader[5]}", out decimal salary);
-                    int.TryParse($"{reader[6]}", out int supervisorID);
-                    int.TryParse($"{reader[7]}", out int branchID);
+                    int.TryParse(reader[0].ToString(), out int id);
+                    decimal.TryParse(reader[5].ToString(), out decimal salary);
+                    int.TryParse(reader[6].ToString(), out int supervisorID);
+                    int.TryParse(reader[7].ToString(), out int branchID);
 
                     DateTime? lastUpdated;
                     if (reader[9] == DBNull.Value)
@@ -179,7 +179,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[1]}", out int branchId);
+                    int.TryParse(reader[1].ToString(), out int branchId);
                     string branchName = reader[0].ToString();
                     ComboBoxItem branchname = new ComboBoxItem(branchName, branchId);
                     branchNames.Add(branchname);
@@ -210,7 +210,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int.TryParse($"{reader[1]}", out int id);
+                    int.TryParse(reader[1].ToString(), out int id);
                     string name = reader[0].ToString();
                     ComboBoxItem comboBoxItem = new ComboBoxItem(name, id);
 

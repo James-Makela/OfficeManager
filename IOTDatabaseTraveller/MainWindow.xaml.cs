@@ -46,7 +46,10 @@ namespace IOTDatabaseTraveller
 
         private void Button_ShowBranches_Click(object sender, RoutedEventArgs e)
         {
-
+            Page branchesPage = new BranchesPage();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Branches";
+            PageHolder.Content = branchesPage;
         }
 
         private void Button_ShowWorksWith_Click(object sender, RoutedEventArgs e)
