@@ -11,11 +11,11 @@ namespace IOTDatabaseTraveller.Datamanager
 {
     public partial class DataManager
     {
-        public List<Client> clients = new();
+        public List<BranchSupplier> branchSuppliers = new();
 
-        public List<Client> GetClients(string sqlQuery = "SELECT * FROM clients")
+        public List<BranchSupplier> GetBranchSuppliers(string sqlQuery = "SELECT * FROM branch_supplier")
         {
-            clients.Clear();
+            branchSuppliers.Clear();
 
             try
             {
@@ -25,12 +25,11 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    // need to parse branch id, supplier id
-                    int.TryParse($"{reader[0]}", out int id);
-                    int.TryParse($"{reader[2]}", out int branchId);
+                    int.TryParse($"{reader[0]}", out int branchID);
+                    int.TryParse($"{reader[1]}", out int supplierID);
 
                     DateTime? lastUpdated;
-                    if (reader[4] == DBNull.Value)
+                    if (reader[5] == DBNull.Value)
                     {
                         lastUpdated = null;
                     }
@@ -39,17 +38,18 @@ namespace IOTDatabaseTraveller.Datamanager
                         lastUpdated = (DateTime)reader[5];
                     }
 
-                    Client client = new()
+                    BranchSupplier branchSupplier = new()
                     {
-                        ID = id,
-                        ClientName = reader[1].ToString(),
-                        BranchID = branchId,
-                        CreatedAt = (DateTime)reader[3],
+                        BranchID = branchID,
+                        SupplierID = supplierID,
+                        SupplierName = reader[2].ToString(),
+                        ProductSupplied = reader[3].ToString(),
+                        CreatedAt = (DateTime)reader[4],
                         UpdatedAt = lastUpdated
-                        
                     };
-                    clients.Add(client);
+                    branchSuppliers.Add(branchSupplier);
                 }
+
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace IOTDatabaseTraveller.Datamanager
             }
 
             conn.Close();
-            return clients;
+            return branchSuppliers;
         }
     }
 }

@@ -64,7 +64,10 @@ namespace IOTDatabaseTraveller
 
         private void Button_ShowBranchSuppliers_Click(object sender, RoutedEventArgs e)
         {
-
+            Page branchSuppliers = new BranchSuppliersPage();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Branch Suppliers";
+            PageHolder.Content = branchSuppliers;
         }
     }
 }

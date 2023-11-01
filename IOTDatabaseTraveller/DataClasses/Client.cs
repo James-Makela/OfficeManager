@@ -12,7 +12,7 @@ namespace IOTDatabaseTraveller.DataClasses
         public string? ClientName { get; set; }
         public int? BranchID { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public DateTime? LastUpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public Client() { }
 
@@ -22,7 +22,7 @@ namespace IOTDatabaseTraveller.DataClasses
             ClientName = clientName;
             BranchID = branchID;
             CreatedAt = createdAt;
-            LastUpdatedAt = lastUpdatedAt;
+            UpdatedAt = lastUpdatedAt;
         }
     }
 }
