@@ -6,9 +6,31 @@
       xmlns:local="clr-namespace:IOTDatabaseTraveller"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsPage">
+      Title="ClientsPage"
+      ShowsNavigationUI="False"
+      Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         
+        <!-- Code for the listview for clients data -->
+        <ListView x:Name="ListView_Clients" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
+            <ListView.View>
+                <GridView x:Name="GridView_Clients">
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Client Name" DisplayMemberBinding="{Binding ClientName}"/>
+                    <GridViewColumn Header="Branch ID" DisplayMemberBinding="{Binding BranchID}"/>
+                    <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"/>
+                    <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding LastUpdatedAt}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IOTDatabaseTraveller.Datamanager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace IOTDatabaseTraveller
     /// </summary>
     public partial class ClientsPage : Page
     {
+        DataManager manager = ((App)Application.Current).manager;
         public ClientsPage()
         {
             InitializeComponent();
+            ReloadClients();
+        }
+
+        private void ReloadClients()
+        {
+            ListView_Clients.DataContext = null;
+            ListView_Clients.DataContext = manager.GetClients();
         }
     }
 }

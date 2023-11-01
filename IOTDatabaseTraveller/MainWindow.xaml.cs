@@ -56,7 +56,10 @@ namespace IOTDatabaseTraveller
 
         private void Button_ShowClients_Click(object sender, RoutedEventArgs e)
         {
-
+            Page clients = new ClientsPage();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Clients";
+            PageHolder.Content = clients;
         }
 
         private void Button_ShowBranchSuppliers_Click(object sender, RoutedEventArgs e)
