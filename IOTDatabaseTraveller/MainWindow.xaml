@@ -22,6 +22,10 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
             <Button x:Name="Button_Home" Content="Home" Margin="5" Click="Button_Home_Click" Width="140"/>
             <Button x:Name="Button_ShowEmployees" Content="Employees" Margin="5" Click="Button_ShowEmployees_Click"/>
+            <Button x:Name="Button_ShowBranches" Content="Branches" Margin="5" Click="Button_ShowBranches_Click"/>
+            <Button x:Name="Button_ShowWorksWith" Content="Works With" Margin="5" Click="Button_ShowWorksWith_Click"/>
+            <Button x:Name="Button_ShowClients" Content="Clients" Margin="5" Click="Button_ShowClients_Click"/>
+            <Button x:Name="Button_ShowBranchSuppliers" Content="Branch Suppliers" Margin="5" Click="Button_ShowBranchSuppliers_Click"/>
         </StackPanel>
         
         <Frame x:Name="PageHolder" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>

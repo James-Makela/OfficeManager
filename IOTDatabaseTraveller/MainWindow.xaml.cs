@@ -30,7 +30,7 @@ namespace IOTDatabaseTraveller
 
         private void Button_ShowEmployees_Click(object sender, RoutedEventArgs e)
         {
-            Page employees = new Employees();
+            Page employees = new EmployeesPage();
             Image_SmallLogo.Visibility = Visibility.Visible;
             Label_PageTitle.Content = "Employees";
             PageHolder.Content = employees;
@@ -42,6 +42,26 @@ namespace IOTDatabaseTraveller
             Image_SmallLogo.Visibility = Visibility.Hidden;
             Label_PageTitle.Content = "Home";
             PageHolder.Content = homePage;
+        }
+
+        private void Button_ShowBranches_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowWorksWith_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowClients_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ShowBranchSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
