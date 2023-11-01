@@ -54,7 +54,10 @@ namespace IOTDatabaseTraveller
 
         private void Button_ShowWorksWith_Click(object sender, RoutedEventArgs e)
         {
-
+            Page workingWith = new WorksWithPage();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Working With";
+            PageHolder.Content = workingWith;
         }
 
         private void Button_ShowClients_Click(object sender, RoutedEventArgs e)

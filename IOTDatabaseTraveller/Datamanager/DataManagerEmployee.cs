@@ -26,11 +26,6 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    int.TryParse(reader[0].ToString(), out int id);
-                    decimal.TryParse(reader[5].ToString(), out decimal salary);
-                    int.TryParse(reader[6].ToString(), out int supervisorID);
-                    int.TryParse(reader[7].ToString(), out int branchID);
-
                     DateTime? lastUpdated;
                     if (reader[9] == DBNull.Value)
                     {
@@ -38,20 +33,20 @@ namespace IOTDatabaseTraveller.Datamanager
                     }
                     else
                     {
-                        lastUpdated = (DateTime)reader[9];
+                        lastUpdated = reader.GetDateTime(9);
                     }
 
                     Employee employee = new()
                     {
-                        ID = id,
-                        FirstName = reader[1].ToString(),
-                        LastName = reader[2].ToString(),
-                        DateOfBirth = (DateTime)reader[3],
-                        Gender = (string)reader[4],
-                        Salary = salary,
-                        SupervisorID = supervisorID,
-                        BranchID = branchID,
-                        CreatedAt = (DateTime)reader[8],
+                        ID = reader.GetInt32(0),
+                        FirstName = reader.GetString(1),
+                        LastName = reader.GetString(2),
+                        DateOfBirth = reader.GetDateTime(3),
+                        Gender = reader.GetString(4),
+                        Salary = reader.GetDecimal(5),
+                        SupervisorID = reader.GetInt32(6),
+                        BranchID = reader.GetInt32(7),
+                        CreatedAt = reader.GetDateTime(8),
                         LastUpdatedAt = lastUpdated
                     };
                     employees.Add(employee);

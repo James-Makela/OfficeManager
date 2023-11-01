@@ -25,10 +25,6 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
-                    // need to parse branch id, supplier id
-                    int.TryParse(reader[0].ToString(), out int id);
-                    int.TryParse(reader[2].ToString(), out int branchId);
-
                     DateTime? lastUpdated;
                     if (reader[4] == DBNull.Value)
                     {
@@ -41,10 +37,10 @@ namespace IOTDatabaseTraveller.Datamanager
 
                     Client client = new()
                     {
-                        ID = id,
-                        ClientName = reader[1].ToString(),
-                        BranchID = branchId,
-                        CreatedAt = (DateTime)reader[3],
+                        ID = reader.GetInt32(0),
+                        ClientName = reader.GetString(1),
+                        BranchID = reader.GetInt32(2),
+                        CreatedAt = reader.GetDateTime(3),
                         UpdatedAt = lastUpdated
                         
                     };

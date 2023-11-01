@@ -32,7 +32,7 @@ namespace IOTDatabaseTraveller.Datamanager
                     }
                     else
                     {
-                        lastUpdated = (DateTime)reader[5];
+                        lastUpdated = reader.GetDateTime(5);
                     }
 
                     Branch branch = new()

@@ -1,21 +1,21 @@
-﻿using IOTDatabaseTraveller.DataClasses;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IOTDatabaseTraveller.DataClasses;
 using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace IOTDatabaseTraveller.Datamanager
 {
     public partial class DataManager
     {
-        public List<BranchSupplier> branchSuppliers = new();
+        List<WorksWith> workingwithdata = new();
 
-        public List<BranchSupplier> GetBranchSuppliers(string sqlQuery = "SELECT * FROM branch_supplier")
+        public List<WorksWith> GetWorksWiths(string sqlQuery = "SELECT * FROM working_with")
         {
-            branchSuppliers.Clear();
+            workingwithdata.Clear();
 
             try
             {
@@ -26,27 +26,26 @@ namespace IOTDatabaseTraveller.Datamanager
                 while (reader.Read())
                 {
                     DateTime? lastUpdated;
-                    if (reader[5] == DBNull.Value)
+                    if (reader[4] == DBNull.Value)
                     {
                         lastUpdated = null;
                     }
                     else
                     {
-                        lastUpdated = reader.GetDateTime(5);
+                        lastUpdated = reader.GetDateTime(4);
                     }
 
-                    BranchSupplier branchSupplier = new()
+                    WorksWith worksWith = new()
                     {
-                        BranchID = reader.GetInt32(0),
-                        SupplierID = reader.GetInt32(1),
-                        SupplierName = reader.GetString(2),
-                        ProductSupplied = reader.GetString(3),
-                        CreatedAt = reader.GetDateTime(4),
+                        EmployeeID = reader.GetInt32(0),
+                        ClientID = reader.GetInt32(1),
+                        TotalSales = reader.GetDecimal(2),
+                        CreatedAt = reader.GetDateTime(3),
                         UpdatedAt = lastUpdated
                     };
-                    branchSuppliers.Add(branchSupplier);
-                }
+                    workingwithdata.Add(worksWith);
 
+                }
             }
             catch (Exception ex)
             {
@@ -54,7 +53,7 @@ namespace IOTDatabaseTraveller.Datamanager
             }
 
             conn.Close();
-            return branchSuppliers;
+            return workingwithdata;
         }
     }
 }
