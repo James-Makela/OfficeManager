@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1280"
         Icon="Images/iotlogosmall.png"
-        Background="#DDDDDD">
+        Background="#DDDDDD"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
