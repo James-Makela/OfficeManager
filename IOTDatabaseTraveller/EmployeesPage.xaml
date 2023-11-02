@@ -53,12 +53,12 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Supervisor:" Margin="10,0,0,0"/>
-                        <ComboBox x:Name="ComboBox_Supervisor" Height="23" Width="75"/>
+                        <ComboBox x:Name="ComboBox_Supervisor" Height="23" Width="100"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Branch:"/>
-                        <ComboBox x:Name="ComboBox_Branch" Height="23" Width="50"/>
+                        <ComboBox x:Name="ComboBox_Branch" Height="23" Width="100"/>
                     </StackPanel>
                 </WrapPanel>
                 

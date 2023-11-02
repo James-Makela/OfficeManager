@@ -13,21 +13,21 @@ namespace IOTDatabaseTraveller.Datamanager
     {
         List<EmployeeSale> employeeSales = new();
 
-        public List<EmployeeSale> GetEmployeeSales(string sqlQuery="")
+        public List<EmployeeSale> GetEmployeeSales(string whereQuery="")
         {
-            if (sqlQuery == "")
-            {
-                sqlQuery = @"SELECT 
-                                    employees.id,
-                                    CONCAT(given_name, "" "", family_name),
-                                    client_name,
-                                    total_sales
-                            FROM employees
-                            JOIN working_with ON employees.id=employee_id
-                            JOIN clients ON clients.id=working_with.client_id
-                            ORDER BY employees.id";
-            }
+            string sqlQuery = @"SELECT 
+                                employees.id,
+                                CONCAT(given_name, "" "", family_name),
+                                client_name,
+                                total_sales
+                        FROM employees
+                        JOIN working_with ON employees.id=employee_id
+                        JOIN clients ON clients.id=working_with.client_id
+                        {0}
+                        ORDER BY employees.id";
 
+            decimal? totalEmployeeSales = 0;
+            sqlQuery = string.Format(sqlQuery, whereQuery);
             employeeSales.Clear();
 
             try
@@ -45,12 +45,25 @@ namespace IOTDatabaseTraveller.Datamanager
                         ClientName = reader.GetString(2),
                         Sales = reader.GetInt32(3),
                     };
+                    totalEmployeeSales += employeeSale.Sales;
                     employeeSales.Add(employeeSale);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+
+            if (whereQuery != "")
+            {
+                EmployeeSale total = new()
+                {
+                    ID = null,
+                    Name = "Total",
+                    ClientName = null,
+                    Sales = totalEmployeeSales,
+                };
+                employeeSales.Add(total);
             }
 
             conn.Close();

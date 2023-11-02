@@ -39,7 +39,21 @@ namespace IOTDatabaseTraveller
         private void PopulateEmployeeCombo()
         {
             ComboBox_Employees.ItemsSource = manager.GetEmployeeNames();
-            ComboBox_Employees.SelectedItem = 0;
+            ComboBox_Employees.SelectedIndex = 0;
+        }
+
+        private void Button_FilterEmployeeSales_Click(object sender, RoutedEventArgs e)
+        {
+            string whereQuery = @"WHERE employees.id={0}";
+            int selectedID = ((ComboBoxItem)ComboBox_Employees.SelectedItem).GetID();
+            if (selectedID == 0)
+            {
+                ReloadEmployeeSales();
+                return;
+            }
+            whereQuery = string.Format(whereQuery, selectedID);
+            ListView_EmployeeSales.DataContext = null;
+            ListView_EmployeeSales.DataContext = manager.GetEmployeeSales(whereQuery);
         }
     }
 }
