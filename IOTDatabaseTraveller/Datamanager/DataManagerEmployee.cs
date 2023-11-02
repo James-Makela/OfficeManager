@@ -26,6 +26,7 @@ namespace IOTDatabaseTraveller.Datamanager
 
                 while (reader.Read())
                 {
+                    int? supervisorId;
                     DateTime? lastUpdated;
                     if (reader[9] == DBNull.Value)
                     {
@@ -34,6 +35,14 @@ namespace IOTDatabaseTraveller.Datamanager
                     else
                     {
                         lastUpdated = reader.GetDateTime(9);
+                    }
+                    if (reader[6] == DBNull.Value)
+                    {
+                        supervisorId = null;
+                    }
+                    else
+                    {
+                        supervisorId = reader.GetInt32(6);
                     }
 
                     Employee employee = new()
@@ -44,7 +53,7 @@ namespace IOTDatabaseTraveller.Datamanager
                         DateOfBirth = reader.GetDateTime(3),
                         Gender = reader.GetString(4),
                         Salary = reader.GetDecimal(5),
-                        SupervisorID = reader.GetInt32(6),
+                        SupervisorID = supervisorId,
                         BranchID = reader.GetInt32(7),
                         CreatedAt = reader.GetDateTime(8),
                         LastUpdatedAt = lastUpdated
@@ -218,6 +227,34 @@ namespace IOTDatabaseTraveller.Datamanager
             }
             conn.Close();
             return supervisorNames;
+        }
+
+        public List<ComboBoxItem> GetEmployeeNames()
+        {
+            string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name), id
+                                    FROM employees";
+
+            List<ComboBoxItem> employeeNames = new()
+            {
+                new ComboBoxItem("All", 0)
+            };
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ComboBoxItem comboBoxItem = new(reader.GetString(0), reader.GetInt32(1));
+                    employeeNames.Add(comboBoxItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+            return employeeNames;
         }
 
         public List<Employee> SearchEmployees(Employee searchParams, decimal low, decimal high)

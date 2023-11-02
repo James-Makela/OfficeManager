@@ -11,11 +11,11 @@ namespace IOTDatabaseTraveller.DataClasses
         public int? ID { get; set; }
         public string? Name { get; set; }
         public string? ClientName { get; set; }
-        public decimal Sales { get; set; }
+        public decimal? Sales { get; set; }
 
         public EmployeeSale() { }
 
-        public WorksWith(int? id, string? name, string? clientName, decimal? sales)
+        public EmployeeSale(int? id, string? name, string? clientName, decimal? sales)
         {
             ID = id;
             Name = name;

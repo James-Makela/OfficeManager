@@ -67,13 +67,10 @@ namespace IOTDatabaseTraveller
 
         private void PopulateSearchCombos()
         {
-            foreach (Employee employee in manager.employees)
-            {
-                    ComboBox_Supervisor.ItemsSource = manager.GetSupervisorNames();
-                    ComboBox_Supervisor.SelectedIndex = 0;
-                    ComboBox_Branch.ItemsSource = manager.GetBranchNames();
-                    ComboBox_Branch.SelectedIndex = 0;
-            }
+            ComboBox_Supervisor.ItemsSource = manager.GetSupervisorNames();
+            ComboBox_Supervisor.SelectedIndex = 0;
+            ComboBox_Branch.ItemsSource = manager.GetBranchNames();
+            ComboBox_Branch.SelectedIndex = 0;
         }
 
         private void Button_SearchEmployee_Click(object sender, RoutedEventArgs e)

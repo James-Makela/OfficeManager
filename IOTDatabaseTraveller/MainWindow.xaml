@@ -26,6 +26,7 @@
             <Button x:Name="Button_ShowWorksWith" Content="Works With" Margin="5" Click="Button_ShowWorksWith_Click"/>
             <Button x:Name="Button_ShowClients" Content="Clients" Margin="5" Click="Button_ShowClients_Click"/>
             <Button x:Name="Button_ShowBranchSuppliers" Content="Branch Suppliers" Margin="5" Click="Button_ShowBranchSuppliers_Click"/>
+            <Button x:Name="Button_ShowEmployeeSales" Content="Employee Sales" Margin="5" Click="Button_ShowEmployeeSales_Click"/>
         </StackPanel>
         
         <Frame x:Name="PageHolder" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>

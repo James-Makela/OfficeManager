@@ -21,7 +21,7 @@ namespace IOTDatabaseTraveller.DataClasses
 
         public Employee() { }
 
-        public Employee(string firstName, string lastName, DateTime? dateOfBirth, string gender, decimal salary, int supervisorID, int branchID, DateTime createdAt, DateTime? lastUpdatedAt, int? iD = null)
+        public Employee(string firstName, string lastName, DateTime? dateOfBirth, string gender, decimal salary, int? supervisorID, int branchID, DateTime createdAt, DateTime? lastUpdatedAt, int? iD = null)
         {
             ID = iD;
             FirstName = firstName;

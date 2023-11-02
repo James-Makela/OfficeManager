@@ -75,5 +75,13 @@ namespace IOTDatabaseTraveller
             Label_PageTitle.Content = "Branch Suppliers";
             PageHolder.Content = branchSuppliers;
         }
+
+        private void Button_ShowEmployeeSales_Click(object sender, RoutedEventArgs e)
+        {
+            Page employeeSales = new EmployeeSalesPage();
+            Image_SmallLogo.Visibility = Visibility.Visible;
+            Label_PageTitle.Content = "Employee Sales";
+            PageHolder.Content = employeeSales;
+        }
     }
 }

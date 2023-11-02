@@ -8,8 +8,10 @@ namespace IOTDatabaseTraveller
 {
     public class ComboBoxItem
     {
-        string Name { get; set; }
+        string? Name { get; set; }
         int Id { get; set; }
+
+        public ComboBoxItem() { }
 
         public ComboBoxItem(string name, int id)
         {
