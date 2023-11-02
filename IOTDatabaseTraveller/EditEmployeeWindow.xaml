@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IOTDatabaseTraveller"
         mc:Ignorable="d"
-        Title="EditEmployeeWindow" Height="350" Width="400"
+        Title="EditEmployeeWindow" Height="380" Width="400"
         WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid>
@@ -18,25 +18,28 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
+
+            <Label Content="Edit Employee" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+
             <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Label Content="ID:" HorizontalAlignment="Right"/>
-                <Label Content="First Name:" HorizontalContentAlignment="Right"/>
-                <Label Content="Last Name:" HorizontalContentAlignment="Right"/>
-                <Label Content="Date Of Birth:" HorizontalContentAlignment="Right"/>
-                <Label Content="Gender:" HorizontalContentAlignment="Right"/>
-                <Label Content="Salary:" HorizontalContentAlignment="Right"/>
-                <Label Content="SupervisorID:" HorizontalContentAlignment="Right"/>
-                <Label Content="BranchID:" HorizontalContentAlignment="Right"/>
+                <Label Content="ID:" HorizontalAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="First Name:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Last Name:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Date Of Birth:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Gender:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Salary:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Supervisor:" HorizontalContentAlignment="Right" Height="23" Margin="4"/>
+                <Label Content="Branch:" HorizontalContentAlignment="Right"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <TextBox x:Name="TextBox_EmployeeId" HorizontalAlignment="Left" Width="200" Margin="4" IsEnabled="False"/>
-                <TextBox x:Name="TextBox_EmployeeFirstName" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
-                <TextBox x:Name="TextBox_EmployeeLastName" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
-                <DatePicker x:Name="DatePicker_EmployeeDateOfBirth" HorizontalAlignment="Left" Width="200" Margin="4"/>
-                <TextBox x:Name="TextBox_EmployeeGender" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
-                <TextBox x:Name="TextBox_EmployeeSalary" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
-                <TextBox x:Name="TextBox_EmployeeSupervisorID" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
-                <TextBox x:Name="TextBox_EmployeeBranchID" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus"/>
+                <TextBox x:Name="TextBox_EmployeeId" HorizontalAlignment="Left" Width="200" Margin="4" IsEnabled="False" Height="23"/>
+                <TextBox x:Name="TextBox_EmployeeFirstName" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus" Height="23"/>
+                <TextBox x:Name="TextBox_EmployeeLastName" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus" Height="23"/>
+                <DatePicker x:Name="DatePicker_EmployeeDateOfBirth" HorizontalAlignment="Left" Width="200" Margin="4" Height="23"/>
+                <TextBox x:Name="TextBox_EmployeeGender" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus" Height="23"/>
+                <TextBox x:Name="TextBox_EmployeeSalary" HorizontalAlignment="Left" Width="200" Margin="4" GotFocus="TextBox_GotFocus" Height="23"/>
+                <ComboBox x:Name="ComboBox_EmployeeSupervisorID" HorizontalAlignment="Left" Width="200" Margin="4" Height="23"/>
+                <ComboBox x:Name="ComboBox_EmployeeBranchID" HorizontalAlignment="Left" Width="200" Margin="4" Height="23"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center" IsCancel="True" Click="Button_Cancel_Click"/>

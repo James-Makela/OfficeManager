@@ -26,6 +26,7 @@ namespace IOTDatabaseTraveller
         {
             InitializeComponent();
             PopulateTextBoxes(selectedEmployee);
+            PopulateComboBoxes(selectedEmployee);
         }
 
         private void PopulateTextBoxes(Employee selectedEmployee)
@@ -36,13 +37,27 @@ namespace IOTDatabaseTraveller
             DatePicker_EmployeeDateOfBirth.SelectedDate = selectedEmployee.DateOfBirth;
             TextBox_EmployeeGender.Text = selectedEmployee.Gender;
             TextBox_EmployeeSalary.Text = selectedEmployee.Salary.ToString();
-            TextBox_EmployeeSupervisorID.Text = selectedEmployee.SupervisorID.ToString();
-            TextBox_EmployeeBranchID.Text = selectedEmployee.BranchID.ToString();
+        }
+        private void PopulateComboBoxes(Employee selectedEmployee)
+        {
+            List<ComboBoxItem> branchNames = manager.GetBranchNames();
+            List<ComboBoxItem> employeeNames = manager.GetEmployeeNames();
+
+            ComboBox_EmployeeBranchID.ItemsSource = branchNames;
+            ComboBox_EmployeeBranchID.SelectedItem = branchNames.Find(combo => combo.GetID() == selectedEmployee.BranchID);
+
+            ComboBox_EmployeeSupervisorID.ItemsSource = employeeNames;
+            ComboBox_EmployeeSupervisorID.SelectedItem = employeeNames.Find(combo => combo.GetID() == selectedEmployee.SupervisorID);
         }
 
         private void Button_EditEmployee_Click(object sender, RoutedEventArgs e)
         {
             Employee changedEmployee = CreateEmployeeFromForms();
+            if (!manager.ValidEmployeeCheck(changedEmployee))
+            {
+                MessageBox.Show("Invalid Data Entered");
+                return;
+            }
             manager.EditEmployee(changedEmployee);
             Close();
         }
@@ -63,8 +78,8 @@ namespace IOTDatabaseTraveller
         {
             int.TryParse(TextBox_EmployeeId.Text, out int id);
             decimal.TryParse(TextBox_EmployeeSalary.Text, out decimal salary);
-            int.TryParse(TextBox_EmployeeSupervisorID.Text, out int supervisorId);
-            int.TryParse(TextBox_EmployeeBranchID.Text, out int branchId);
+            int supervisorId = ((ComboBoxItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
+            int branchId = ((ComboBoxItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
             if (DatePicker_EmployeeDateOfBirth.SelectedDate == null)
             {
                 return null;

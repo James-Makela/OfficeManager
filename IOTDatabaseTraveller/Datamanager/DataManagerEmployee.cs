@@ -169,13 +169,16 @@ namespace IOTDatabaseTraveller.Datamanager
             }
         }
 
-        public List<ComboBoxItem> GetBranchNames()
+        public List<ComboBoxItem> GetBranchNames(bool includeAll=true)
         {
             string sqlQuery = "SELECT branch_name, id FROM branches";
-            List<ComboBoxItem> branchNames = new()
+            List<ComboBoxItem> branchNames = new();
+
+            if (includeAll)
             {
-                new ComboBoxItem("All", 0)
-            };
+                branchNames.Add(new ComboBoxItem("All", 0));
+            }
+
             try
             {
                 conn.Open();
@@ -229,15 +232,17 @@ namespace IOTDatabaseTraveller.Datamanager
             return supervisorNames;
         }
 
-        public List<ComboBoxItem> GetEmployeeNames()
+        public List<ComboBoxItem> GetEmployeeNames(bool includeAll=true)
         {
             string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name), id
                                     FROM employees";
 
-            List<ComboBoxItem> employeeNames = new()
+            List<ComboBoxItem> employeeNames = new();
+            
+            if (includeAll)
             {
-                new ComboBoxItem("All", 0)
-            };
+                employeeNames.Add(new ComboBoxItem("All", 0));
+            }
             try
             {
                 conn.Open();
@@ -255,6 +260,15 @@ namespace IOTDatabaseTraveller.Datamanager
             }
             conn.Close();
             return employeeNames;
+        }
+
+        public bool ValidEmployeeCheck(Employee employeeToCheck)
+        {
+            if (!(employeeToCheck.FirstName.Length > 1) || !(employeeToCheck.FirstName.All(Char.IsLetter)))
+            {
+                return false;
+            }
+            return true;
         }
 
         public List<Employee> SearchEmployees(Employee searchParams, decimal low, decimal high)

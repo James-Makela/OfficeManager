@@ -25,11 +25,23 @@ namespace IOTDatabaseTraveller
         public AddEmployeeWindow()
         {
             InitializeComponent();
+            PopulateComboBoxes();
+        }
+
+        private void PopulateComboBoxes()
+        {
+            ComboBox_EmployeeBranchID.ItemsSource = manager.GetBranchNames(false);
+            ComboBox_EmployeeSupervisorID.ItemsSource = manager.GetEmployeeNames(false);
         }
 
         private void Button_AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             Employee newEmployee = CreateEmployeeFromForms();
+            if (!manager.ValidEmployeeCheck(newEmployee))
+            {
+                MessageBox.Show("Invalid Data Entered");
+                return;
+            }
             manager.AddEmployee(newEmployee);
             Close();
         }
@@ -37,8 +49,8 @@ namespace IOTDatabaseTraveller
         private Employee CreateEmployeeFromForms()
         {
             decimal.TryParse(TextBox_EmployeeSalary.Text, out decimal salary);
-            int.TryParse(TextBox_EmployeeSupervisorID.Text, out int supervisorId);
-            int.TryParse(TextBox_EmployeeBranchID.Text, out int branchId);
+            int supervisorId = ((ComboBoxItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
+            int branchId = ((ComboBoxItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
             if (TextBox_EmployeeDateOfBirth.SelectedDate == null)
             {
                 return null;
