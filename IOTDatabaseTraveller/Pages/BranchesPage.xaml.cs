@@ -64,6 +64,11 @@ namespace IOTDatabaseTraveller
         private void Button_EditBranch_Click(object sender, RoutedEventArgs e)
         {
             Branch selectedBranch = (Branch)ListView_Branches.SelectedItem;
+            if (selectedBranch == null)
+            {
+                MessageBox.Show("Please select a branch to edit");
+                return;
+            }
             EditBranchWindow editBranchWindow = new(selectedBranch);
             editBranchWindow.Owner = Application.Current.MainWindow;
             editBranchWindow.ShowDialog();
