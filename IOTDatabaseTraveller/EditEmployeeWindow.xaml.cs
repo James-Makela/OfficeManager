@@ -40,8 +40,8 @@ namespace IOTDatabaseTraveller
         }
         private void PopulateComboBoxes(Employee selectedEmployee)
         {
-            List<ComboBoxItem> branchNames = manager.GetBranchNames();
-            List<ComboBoxItem> employeeNames = manager.GetEmployeeNames();
+            List<ComboBoxStringIdItem> branchNames = manager.GetBranchNames();
+            List<ComboBoxStringIdItem> employeeNames = manager.GetEmployeeNames();
 
             ComboBox_EmployeeBranchID.ItemsSource = branchNames;
             ComboBox_EmployeeBranchID.SelectedItem = branchNames.Find(combo => combo.GetID() == selectedEmployee.BranchID);
@@ -78,8 +78,8 @@ namespace IOTDatabaseTraveller
         {
             int.TryParse(TextBox_EmployeeId.Text, out int id);
             decimal.TryParse(TextBox_EmployeeSalary.Text, out decimal salary);
-            int supervisorId = ((ComboBoxItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
-            int branchId = ((ComboBoxItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
+            int supervisorId = ((ComboBoxStringIdItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
+            int branchId = ((ComboBoxStringIdItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
             if (DatePicker_EmployeeDateOfBirth.SelectedDate == null)
             {
                 return null;

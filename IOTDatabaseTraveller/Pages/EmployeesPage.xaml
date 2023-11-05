@@ -69,13 +69,13 @@
         </GroupBox>
 
         <!-- Code for the listview for employees data -->
-        <ListView x:Name="ListView_Employees" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
+        <ListView x:Name="ListView_Employees" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView x:Name="GridView_Employees">
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}"/>
                     <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
-                    <GridViewColumn Header="Date Of Birth" DisplayMemberBinding="{Binding DateOfBirth}"/>
+                    <GridViewColumn Header="Date Of Birth" DisplayMemberBinding="{Binding DateOfBirth, StringFormat='dd-MM-yyyy'}"/>
                     <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Gender}"/>
                     <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Salary}"/>
                     <GridViewColumn Header="Supervisor ID" DisplayMemberBinding="{Binding SupervisorID}"/>
@@ -86,7 +86,7 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Orientation="Vertical" Grid.RowSpan="2" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <Button x:Name="Button_AddEmployee" Content="Add Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_AddEmployee_Click"/>
             <Button x:Name="Button_RemoveEmployee" Content="Remove Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_RemoveEmployee_Click"/>
             <Button x:Name="Button_EditEmployee" Content="Edit Employee" Margin="5" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_EditEmployee_Click"/>

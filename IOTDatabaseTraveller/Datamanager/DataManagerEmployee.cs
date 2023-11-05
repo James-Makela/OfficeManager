@@ -169,14 +169,14 @@ namespace IOTDatabaseTraveller.Datamanager
             }
         }
 
-        public List<ComboBoxItem> GetBranchNames(bool includeAll=true)
+        public List<ComboBoxStringIdItem> GetBranchNames(bool includeAll=true)
         {
             string sqlQuery = "SELECT branch_name, id FROM branches";
-            List<ComboBoxItem> branchNames = new();
+            List<ComboBoxStringIdItem> branchNames = new();
 
             if (includeAll)
             {
-                branchNames.Add(new ComboBoxItem("All", 0));
+                branchNames.Add(new ComboBoxStringIdItem("All", 0));
             }
 
             try
@@ -188,7 +188,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 {
                     int.TryParse(reader[1].ToString(), out int branchId);
                     string branchName = reader[0].ToString();
-                    ComboBoxItem branchname = new ComboBoxItem(branchName, branchId);
+                    ComboBoxStringIdItem branchname = new ComboBoxStringIdItem(branchName, branchId);
                     branchNames.Add(branchname);
                 }
             }
@@ -201,14 +201,14 @@ namespace IOTDatabaseTraveller.Datamanager
             return branchNames;
         }
 
-        public List<ComboBoxItem> GetSupervisorNames()
+        public List<ComboBoxStringIdItem> GetSupervisorNames()
         {
             string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name) 
                                     AS name, id FROM employees 
                                     WHERE id IN (SELECT supervisor_id FROM employees);";
-            List<ComboBoxItem> supervisorNames = new()
+            List<ComboBoxStringIdItem> supervisorNames = new()
             {
-                new ComboBoxItem("All", 0)
+                new ComboBoxStringIdItem("All", 0)
             };
             try
             {
@@ -219,7 +219,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 {
                     int.TryParse(reader[1].ToString(), out int id);
                     string name = reader[0].ToString();
-                    ComboBoxItem comboBoxItem = new ComboBoxItem(name, id);
+                    ComboBoxStringIdItem comboBoxItem = new ComboBoxStringIdItem(name, id);
 
                     supervisorNames.Add(comboBoxItem);
                 }
@@ -232,16 +232,16 @@ namespace IOTDatabaseTraveller.Datamanager
             return supervisorNames;
         }
 
-        public List<ComboBoxItem> GetEmployeeNames(bool includeAll=true)
+        public List<ComboBoxStringIdItem> GetEmployeeNames(bool includeAll=true)
         {
             string sqlQuery = @"SELECT CONCAT(given_name, "" "", family_name), id
                                     FROM employees";
 
-            List<ComboBoxItem> employeeNames = new();
+            List<ComboBoxStringIdItem> employeeNames = new();
             
             if (includeAll)
             {
-                employeeNames.Add(new ComboBoxItem("All", 0));
+                employeeNames.Add(new ComboBoxStringIdItem("All", 0));
             }
             try
             {
@@ -250,7 +250,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ComboBoxItem comboBoxItem = new(reader.GetString(0), reader.GetInt32(1));
+                    ComboBoxStringIdItem comboBoxItem = new(reader.GetString(0), reader.GetInt32(1));
                     employeeNames.Add(comboBoxItem);
                 }
             }

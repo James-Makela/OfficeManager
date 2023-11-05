@@ -49,8 +49,8 @@ namespace IOTDatabaseTraveller
         private Employee CreateEmployeeFromForms()
         {
             decimal.TryParse(TextBox_EmployeeSalary.Text, out decimal salary);
-            int supervisorId = ((ComboBoxItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
-            int branchId = ((ComboBoxItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
+            int supervisorId = ((ComboBoxStringIdItem)ComboBox_EmployeeSupervisorID.SelectedItem).GetID();
+            int branchId = ((ComboBoxStringIdItem)ComboBox_EmployeeBranchID.SelectedItem).GetID();
             if (TextBox_EmployeeDateOfBirth.SelectedDate == null)
             {
                 return null;

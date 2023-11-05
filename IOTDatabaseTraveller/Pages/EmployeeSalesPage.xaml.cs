@@ -45,7 +45,7 @@ namespace IOTDatabaseTraveller
         private void Button_FilterEmployeeSales_Click(object sender, RoutedEventArgs e)
         {
             string whereQuery = @"WHERE employees.id={0}";
-            int selectedID = ((ComboBoxItem)ComboBox_Employees.SelectedItem).GetID();
+            int selectedID = ((ComboBoxStringIdItem)ComboBox_Employees.SelectedItem).GetID();
             if (selectedID == 0)
             {
                 ReloadEmployeeSales();

@@ -30,6 +30,6 @@
             <Button x:Name="Button_ShowEmployeeSales" Content="Employee Sales" Margin="5" Click="Button_ShowEmployeeSales_Click"/>
         </StackPanel>
         
-        <Frame x:Name="PageHolder" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="PageHolder" Grid.Column="1" Grid.Row="1" Margin="10" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

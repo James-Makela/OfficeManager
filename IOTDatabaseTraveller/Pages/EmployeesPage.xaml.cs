@@ -83,11 +83,11 @@ namespace IOTDatabaseTraveller
             DateTime? dob = null;
             if (ComboBox_Supervisor.SelectedItem != null)
             {
-                supervisorID = ((ComboBoxItem)ComboBox_Supervisor.SelectedItem).GetID();
+                supervisorID = ((ComboBoxStringIdItem)ComboBox_Supervisor.SelectedItem).GetID();
             }
             if (ComboBox_Branch.SelectedItem != null)
             {
-                branchId = ((ComboBoxItem)ComboBox_Branch.SelectedItem).GetID();
+                branchId = ((ComboBoxStringIdItem)ComboBox_Branch.SelectedItem).GetID();
             }
             
             Employee searchEmployee = new()
@@ -129,6 +129,11 @@ namespace IOTDatabaseTraveller
 
         private void Button_EditEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (ListView_Employees.SelectedItem == null)
+            {
+                MessageBox.Show("You must select an employee to edit");
+                return;
+            }
             Employee selectedEmployee = (Employee)ListView_Employees.SelectedItem;
             EditEmployeeWindow editEmployeeWindow = new(selectedEmployee);
             editEmployeeWindow.Owner = Application.Current.MainWindow;

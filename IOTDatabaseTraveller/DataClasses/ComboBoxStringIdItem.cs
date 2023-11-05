@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IOTDatabaseTraveller
+namespace IOTDatabaseTraveller.DataClasses
 {
-    public class ComboBoxItem
+    public class ComboBoxStringIdItem
     {
         string? Name { get; set; }
         int Id { get; set; }
 
-        public ComboBoxItem() { }
+        public ComboBoxStringIdItem() { }
 
-        public ComboBoxItem(string name, int id)
+        public ComboBoxStringIdItem(string name, int id)
         {
-            Name = name; 
+            Name = name;
             Id = id;
         }
 
