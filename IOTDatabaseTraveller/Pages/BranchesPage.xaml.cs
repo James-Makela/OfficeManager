@@ -34,6 +34,8 @@ namespace IOTDatabaseTraveller
         {
             ListView_Branches.DataContext = null;
             ListView_Branches.DataContext = manager.GetBranches();
+            Combobox_SearchBranchManager.ItemsSource = manager.GetSupervisorNames();
+            Combobox_SearchBranchManager.SelectedIndex = 0;
         }
 
         private void Button_AddBranch_Click(object sender, RoutedEventArgs e)
@@ -79,12 +81,28 @@ namespace IOTDatabaseTraveller
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
+            int.TryParse(TextBox_SearchBranchID.Text, out int id);
+            Branch searchJob = new()
+            {
+                ID = id,
+                ManagerID = ((ComboBoxStringIdItem)Combobox_SearchBranchManager.SelectedItem).GetID()
+            };
 
+            if ((searchJob.ID == 0) && (searchJob.ManagerID == 0))
+            {
+                ReloadBranches();
+                return;
+            }
+
+            ListView_Branches.DataContext = null;
+            ListView_Branches.DataContext = manager.SearchBranches(searchJob);
         }
 
         private void Button_ClearSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            TextBox_SearchBranchID.Clear();
+            Combobox_SearchBranchManager.SelectedIndex = 0;
+            ReloadBranches();
         }
     }
 }

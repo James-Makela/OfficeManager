@@ -140,5 +140,29 @@ namespace IOTDatabaseTraveller.Datamanager
             }
             conn.Close();
         }
+
+        public List<Branch> SearchBranches(Branch searchParams)
+        {
+            string searchQuery = @"SELECT * FROM branches
+                                    WHERE";
+
+            string searchBranchID = "";
+            string searchSupervisorId = "";
+            string andString = "";
+
+            if (searchParams.ID != 0)
+            {
+                searchBranchID = string.Format(" id={0}", searchParams.ID);
+                andString = "AND ";
+            }
+            if (searchParams.ManagerID != 0)
+            {
+                searchSupervisorId = string.Format(" {0}manager_id={1}", andString, searchParams.ManagerID);
+            }
+
+            string fullSearch = searchQuery + searchBranchID + searchSupervisorId;
+            List<Branch> result = GetBranches(fullSearch);
+            return result;
+        }
     }
 }
