@@ -61,5 +61,15 @@ namespace IOTDatabaseTraveller
             };
             return newBranch;
         }
+
+        private void Button_Cancel_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_AddBranch_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

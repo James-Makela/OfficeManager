@@ -49,5 +49,20 @@ namespace IOTDatabaseTraveller.Datamanager
             conn.Close();
             return comboList;
         }
+
+        public void SqlNonQuery(string sqlQuery)
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
     }
 }

@@ -59,24 +59,14 @@ namespace IOTDatabaseTraveller.Datamanager
 
         public void DeleteBranch(Branch oldBranch)
         {
-            string sqlQuery = @"DELETE FROM branches WHERE id={0}";
-            sqlQuery = string.Format(sqlQuery, oldBranch.ID);
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
+            string sqlNonQuery = @"DELETE FROM branches WHERE id={0}";
+            sqlNonQuery = string.Format(sqlNonQuery, oldBranch.ID);
+            SqlNonQuery(sqlNonQuery);
         }
 
         public void AddBranch(Branch newBranch)
         {
-            string sqlQuery = @"INSERT INTO branches (
+            string sqlNonQuery = @"INSERT INTO branches (
                                             branch_name,
                                             manager_id,
                                             manager_started_at,
@@ -86,19 +76,9 @@ namespace IOTDatabaseTraveller.Datamanager
 
             string managerStartedAt = ((DateTime)newBranch.ManagerStartedAt).ToString("yyyy-MM-dd");
             string createdAt = ((DateTime)newBranch.CreatedAt).ToString("yyyy-MM-dd");
-            sqlQuery = String.Format(sqlQuery, newBranch.BranchName, newBranch.ManagerID, managerStartedAt, createdAt);
+            sqlNonQuery = String.Format(sqlNonQuery, newBranch.BranchName, newBranch.ManagerID, managerStartedAt, createdAt);
 
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
+            SqlNonQuery(sqlNonQuery);
         }
 
         public bool CheckBranchIsValid(Branch branchToCheck)
@@ -113,7 +93,7 @@ namespace IOTDatabaseTraveller.Datamanager
 
         public void EditBranch(Branch changedBranch)
         {
-            string sqlQuery = @"UPDATE branches
+            string sqlNonQuery = @"UPDATE branches
                                     SET
                                         branch_name='{0}',
                                         manager_id={1},
@@ -122,23 +102,13 @@ namespace IOTDatabaseTraveller.Datamanager
                                         id={3}";
 
             string managerStartedAt = ((DateTime)changedBranch.ManagerStartedAt).ToString("yyyy-MM-dd");
-            sqlQuery = string.Format(sqlQuery,
+            sqlNonQuery = string.Format(sqlNonQuery,
                                         changedBranch.BranchName,
                                         changedBranch.ManagerID,
                                         managerStartedAt,
                                         changedBranch.ID);
 
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
+            SqlNonQuery(sqlNonQuery);
         }
 
         public List<Branch> SearchBranches(Branch searchParams)

@@ -24,8 +24,8 @@
         <ListView x:Name="ListView_WorkingWith" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView x:Name="GridView_WorkingWith">
-                    <GridViewColumn Header="Employee ID" DisplayMemberBinding="{Binding EmployeeID}"/>
-                    <GridViewColumn Header="Client ID" DisplayMemberBinding="{Binding ClientID}"/>
+                    <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding EmployeeName}"/>
+                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding ClientName}"/>
                     <GridViewColumn Header="Total Sales" DisplayMemberBinding="{Binding TotalSales}"/>
                     <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding CreatedAt}"/>
                     <GridViewColumn Header="Updated At" DisplayMemberBinding="{Binding LastUpdatedAt}"/>

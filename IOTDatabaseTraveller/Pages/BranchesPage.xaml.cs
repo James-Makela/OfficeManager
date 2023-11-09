@@ -82,20 +82,20 @@ namespace IOTDatabaseTraveller
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(TextBox_SearchBranchID.Text, out int id);
-            Branch searchJob = new()
+            Branch searchBranch = new()
             {
                 ID = id,
                 ManagerID = ((ComboBoxStringIdItem)Combobox_SearchBranchManager.SelectedItem).GetID()
             };
 
-            if ((searchJob.ID == 0) && (searchJob.ManagerID == 0))
+            if ((searchBranch.ID == 0) && (searchBranch.ManagerID == 0))
             {
                 ReloadBranches();
                 return;
             }
 
             ListView_Branches.DataContext = null;
-            ListView_Branches.DataContext = manager.SearchBranches(searchJob);
+            ListView_Branches.DataContext = manager.SearchBranches(searchBranch);
         }
 
         private void Button_ClearSearch_Click(object sender, RoutedEventArgs e)

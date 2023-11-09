@@ -73,7 +73,7 @@ namespace IOTDatabaseTraveller.Datamanager
 
         public void AddEmployee(Employee newEmployee)
         {
-            string sqlQuery = @"INSERT INTO employees (
+            string sqlNonQuery = @"INSERT INTO employees (
                                             given_name,
                                             family_name,
                                             date_of_birth,
@@ -86,7 +86,7 @@ namespace IOTDatabaseTraveller.Datamanager
                                             ('{0}', '{1}', ""{2}"", '{3}', {4}, {5}, {6}, ""{7}"")";
             string dob = ((DateTime)newEmployee.DateOfBirth).ToString("yyyy-MM-dd");
             string createdAt = ((DateTime)newEmployee.CreatedAt).ToString("yyyy-MM-dd HH:mm:ss");
-            sqlQuery = string.Format(sqlQuery,
+            sqlNonQuery = string.Format(sqlNonQuery,
                                             newEmployee.FirstName,
                                             newEmployee.LastName,
                                             dob,
@@ -97,41 +97,19 @@ namespace IOTDatabaseTraveller.Datamanager
                                             createdAt
                     );
 
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
+            SqlNonQuery(sqlNonQuery);
         }
 
         public void RemoveEmployee(Employee oldEmployee)
         {
-            string sqlQuery = "DELETE FROM employees WHERE id={0}";
-            sqlQuery = string.Format(sqlQuery, oldEmployee.ID);
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
+            string sqlNonQuery = "DELETE FROM employees WHERE id={0}";
+            sqlNonQuery = string.Format(sqlNonQuery, oldEmployee.ID);
+            SqlNonQuery(sqlNonQuery);
         }
 
         public void EditEmployee(Employee changedEmployee)
         {
-            string sqlQuery = @"UPDATE employees
+            string sqlNonQuery = @"UPDATE employees
                                 SET 
                                     given_name='{0}',
                                     family_name='{1}',
@@ -144,7 +122,7 @@ namespace IOTDatabaseTraveller.Datamanager
                                 WHERE 
                                     id={8}";
             string dob = ((DateTime)changedEmployee.DateOfBirth).ToString("yyyy-MM-dd");
-            sqlQuery = string.Format(sqlQuery,
+            sqlNonQuery = string.Format(sqlNonQuery,
                                         changedEmployee.FirstName,
                                         changedEmployee.LastName,
                                         dob,
@@ -155,18 +133,7 @@ namespace IOTDatabaseTraveller.Datamanager
                                         DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                         changedEmployee.ID
                                         );
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
+            SqlNonQuery(sqlNonQuery);
         }
 
         public List<ComboBoxStringIdItem> GetBranchNames(bool includeAll=true)

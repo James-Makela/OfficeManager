@@ -10,16 +10,20 @@ namespace IOTDatabaseTraveller.DataClasses
     {
         public int? EmployeeID { get; set; }
         public int? ClientID { get; set; }
+        public string? EmployeeName { get; set; }
+        public string? ClientName { get; set; }
         public decimal? TotalSales { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
         public WorksWith() { }
 
-        public WorksWith(int? employeeID, int? clientID, decimal? totalSales, DateTime? createdAt, DateTime? updatedAt)
+        public WorksWith(int? employeeID, int? clientID, string? employeeName, string? clientName, decimal? totalSales, DateTime? createdAt, DateTime? updatedAt)
         {
             EmployeeID = employeeID;
             ClientID = clientID;
+            EmployeeName = employeeName;
+            ClientName = clientName;
             TotalSales = totalSales;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
