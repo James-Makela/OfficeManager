@@ -32,7 +32,7 @@ namespace IOTDatabaseTraveller.Datamanager
                     }
                     else
                     {
-                        lastUpdated = (DateTime)reader[5];
+                        lastUpdated = (DateTime)reader[4];
                     }
 
                     Client client = new()
@@ -67,6 +67,46 @@ namespace IOTDatabaseTraveller.Datamanager
             }
 
             return GetNameAndIDForCombo(clientNames, sqlQuery);
+        }
+
+        public bool CheckClientIsValid(Client clientToCheck)
+        {
+            if (clientToCheck.ClientName.Length < 1 || clientToCheck.BranchID == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void AddClient(Client newClient)
+        {
+            string sqlNonQuery = @"INSERT INTO clients (
+                                            client_name,
+                                            branch_id)
+                                        VALUES
+                                            ('{0}', {1})";
+
+            sqlNonQuery = string.Format(sqlNonQuery, newClient.ClientName, newClient.BranchID);
+
+            SqlNonQuery(sqlNonQuery);
+        }
+
+        public void DeleteClient(Client oldClient)
+        {
+            string sqlNonQuery = @"DELETE FROM clients WHERE id={0}";
+            sqlNonQuery = string.Format(sqlNonQuery, oldClient.ID);
+            SqlNonQuery(sqlNonQuery);
+        }
+
+        public void EditClient(Client changedClient)
+        {
+            string sqlNonQuery = @"UPDATE clients
+                                        SET 
+                                            client_name='{0}',
+                                            branch_id={1}
+                                        WHERE id={2}";
+            sqlNonQuery = string.Format(sqlNonQuery, changedClient.ClientName, changedClient.BranchID, changedClient.ID);
+            SqlNonQuery(sqlNonQuery);
         }
     }
 }

@@ -32,5 +32,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Button x:Name="Button_AddClient" Content="Add Client" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_AddClient_Click" />
+            <Button x:Name="Button_RemoveClient" Content="Remove Client" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_RemoveClient_Click" />
+            <Button x:Name="Button_EditClient" Content="Edit Client" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_EditClient_Click" />
+        </StackPanel>
     </Grid>
 </Page>
