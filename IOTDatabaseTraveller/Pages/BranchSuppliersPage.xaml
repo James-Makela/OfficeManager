@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <!-- Code for the listview for branch suppliers data -->
-        <ListView x:Name="ListView_BranchSuppliers" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
+        <ListView x:Name="ListView_BranchSuppliers" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView x:Name="GridView_BranchSuppliers">
                     <GridViewColumn Header="Branch ID" DisplayMemberBinding="{Binding BranchID}"/>

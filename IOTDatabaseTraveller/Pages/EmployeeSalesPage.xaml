@@ -28,7 +28,7 @@
         
 
         <!-- Code for the listview for employee sales data -->
-        <ListView x:Name="ListView_EmployeeSales" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
+        <ListView x:Name="ListView_EmployeeSales" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView x:Name="GridView_EmployeeSales">
                     <GridViewColumn Header="Employee ID" DisplayMemberBinding="{Binding ID}"/>

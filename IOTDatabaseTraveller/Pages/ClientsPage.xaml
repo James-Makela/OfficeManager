@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         
         <!-- Code for the listview for clients data -->
-        <ListView x:Name="ListView_Clients" ItemsSource="{Binding}" Margin="10" Grid.Column="1" Grid.Row="1">
+        <ListView x:Name="ListView_Clients" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView x:Name="GridView_Clients">
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
