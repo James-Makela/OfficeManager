@@ -32,9 +32,9 @@
             <ListView.View>
                 <GridView x:Name="GridView_EmployeeSales">
                     <GridViewColumn Header="Employee ID" DisplayMemberBinding="{Binding ID}"/>
-                    <GridViewColumn Header="Client ID" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Total Sales" DisplayMemberBinding="{Binding ClientName}"/>
-                    <GridViewColumn Header="Created At" DisplayMemberBinding="{Binding Sales}"/>
+                    <GridViewColumn Header="Employee Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Company Name" DisplayMemberBinding="{Binding ClientName}"/>
+                    <GridViewColumn Header="Sales Amount" DisplayMemberBinding="{Binding Sales}"/>
                 </GridView>
             </ListView.View>
         </ListView>

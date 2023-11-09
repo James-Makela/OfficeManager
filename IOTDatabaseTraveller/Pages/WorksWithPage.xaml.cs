@@ -32,6 +32,33 @@ namespace IOTDatabaseTraveller
         {
             ListView_WorkingWith.DataContext = null;
             ListView_WorkingWith.DataContext = manager.GetWorksWiths();
+            ComboBox_SearchClient.ItemsSource = manager.GetClientNames();
+            ComboBox_SearchEmployee.ItemsSource = manager.GetEmployeeNames();
+        }
+
+        private void Button_SearchWorksWith_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_ClearSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_AddWorksWith_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_RemoveWorksWith_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_EditWorksWith_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

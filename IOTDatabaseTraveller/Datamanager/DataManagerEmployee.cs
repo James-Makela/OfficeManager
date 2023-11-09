@@ -179,26 +179,7 @@ namespace IOTDatabaseTraveller.Datamanager
                 branchNames.Add(new ComboBoxStringIdItem("All", 0));
             }
 
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int.TryParse(reader[1].ToString(), out int branchId);
-                    string branchName = reader[0].ToString();
-                    ComboBoxStringIdItem branchname = new ComboBoxStringIdItem(branchName, branchId);
-                    branchNames.Add(branchname);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            conn.Close();
-            return branchNames;
+            return GetNameAndIDForCombo(branchNames, sqlQuery);
         }
 
         public List<ComboBoxStringIdItem> GetSupervisorNames()
@@ -210,26 +191,8 @@ namespace IOTDatabaseTraveller.Datamanager
             {
                 new ComboBoxStringIdItem("All", 0)
             };
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int.TryParse(reader[1].ToString(), out int id);
-                    string name = reader[0].ToString();
-                    ComboBoxStringIdItem comboBoxItem = new ComboBoxStringIdItem(name, id);
-
-                    supervisorNames.Add(comboBoxItem);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
-            return supervisorNames;
+            
+            return GetNameAndIDForCombo(supervisorNames, sqlQuery);
         }
 
         public List<ComboBoxStringIdItem> GetEmployeeNames(bool includeAll=true)
@@ -243,23 +206,8 @@ namespace IOTDatabaseTraveller.Datamanager
             {
                 employeeNames.Add(new ComboBoxStringIdItem("All", 0));
             }
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    ComboBoxStringIdItem comboBoxItem = new(reader.GetString(0), reader.GetInt32(1));
-                    employeeNames.Add(comboBoxItem);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
-            return employeeNames;
+            
+            return GetNameAndIDForCombo(employeeNames, sqlQuery);
         }
 
         public bool ValidEmployeeCheck(Employee employeeToCheck)

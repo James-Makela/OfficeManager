@@ -34,8 +34,8 @@
                     </StackPanel>
                 </WrapPanel>
 
-                <Button x:Name="Button_Search" Content="Search" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" IsDefault="True" Click="Button_Search_Click"/>
-                <Button x:Name="Button_ClearSearch" Content="Clear" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" IsCancel="True" Click="Button_ClearSearch_Click"/>
+                <Button x:Name="Button_Search" Content="Search" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" IsDefault="True" Click="Button_Search_Click"/>
+                <Button x:Name="Button_ClearSearch" Content="Clear" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" IsCancel="True" Click="Button_ClearSearch_Click"/>
             </Grid>
         </GroupBox>
 

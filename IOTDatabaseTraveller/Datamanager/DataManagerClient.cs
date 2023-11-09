@@ -55,5 +55,18 @@ namespace IOTDatabaseTraveller.Datamanager
             conn.Close();
             return clients;
         }
+
+        public List<ComboBoxStringIdItem> GetClientNames(bool includeAll=true)
+        {
+            string sqlQuery = "SELECT client_name, id FROM clients";
+            List<ComboBoxStringIdItem> clientNames = new();
+            
+            if(includeAll)
+            {
+                clientNames.Add(new ComboBoxStringIdItem("All", 0));
+            }
+
+            return GetNameAndIDForCombo(clientNames, sqlQuery);
+        }
     }
 }
