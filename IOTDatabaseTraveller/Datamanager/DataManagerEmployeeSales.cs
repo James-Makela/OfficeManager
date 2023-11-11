@@ -69,5 +69,15 @@ namespace IOTDatabaseTraveller.Datamanager
             conn.Close();
             return employeeSales;
         }
+
+        // TODO: Add function to delete employeesale
+
+        // TODO: Add function to add employeesale
+
+        // TODO: Add function to edit employeesale
+
+        // TODO: Add function to Check employeesale is valid
+
+        // TODO: Add function to search employeesales
     }
 }

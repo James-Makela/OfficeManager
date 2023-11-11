@@ -56,5 +56,15 @@ namespace IOTDatabaseTraveller.Datamanager
             conn.Close();
             return branchSuppliers;
         }
+
+        // TODO: Add function to delete branchsupplier
+
+        // TODO: Add function to add branchsupplier
+
+        // TODO: Add function to edit branchsupplier
+
+        // TODO: Add function to Check branchsupplier is valid
+
+        // TODO: Add function to search branchsuppliers
     }
 }

@@ -136,6 +136,7 @@ namespace IOTDatabaseTraveller.Datamanager
             SqlNonQuery(sqlNonQuery);
         }
 
+        // TODO: Move this function to appropriate file
         public List<ComboBoxStringIdItem> GetBranchNames(bool includeAll=true)
         {
             string sqlQuery = "SELECT branch_name, id FROM branches";
@@ -177,6 +178,7 @@ namespace IOTDatabaseTraveller.Datamanager
             return GetNameAndIDForCombo(employeeNames, sqlQuery);
         }
 
+        // TODO: Add more validation here
         public bool ValidEmployeeCheck(Employee employeeToCheck)
         {
             if (!(employeeToCheck.FirstName.Length > 1) || !(employeeToCheck.FirstName.All(Char.IsLetter)))
@@ -186,6 +188,8 @@ namespace IOTDatabaseTraveller.Datamanager
             return true;
         }
 
+        // TODO: Refactor? Maybe make a list(string) of query additions that then gets added to the base query
+        //       This would save instantiating a bunch of empty strings at the begining.
         public List<Employee> SearchEmployees(Employee searchParams, decimal low, decimal high)
         {
             string searchQuery = @"SELECT * FROM employees

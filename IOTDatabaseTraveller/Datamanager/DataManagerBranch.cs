@@ -17,7 +17,6 @@ namespace IOTDatabaseTraveller.Datamanager
         public List<Branch> GetBranches(string sqlQuery = "SELECT * FROM branches")
         {
             branches.Clear();
-
             try
             {
                 conn.Open();
@@ -107,7 +106,6 @@ namespace IOTDatabaseTraveller.Datamanager
                                         changedBranch.ManagerID,
                                         managerStartedAt,
                                         changedBranch.ID);
-
             SqlNonQuery(sqlNonQuery);
         }
 
