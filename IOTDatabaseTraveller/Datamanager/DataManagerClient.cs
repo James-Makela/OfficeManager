@@ -108,5 +108,29 @@ namespace IOTDatabaseTraveller.Datamanager
             sqlNonQuery = string.Format(sqlNonQuery, changedClient.ClientName, changedClient.BranchID, changedClient.ID);
             SqlNonQuery(sqlNonQuery);
         }
+
+        public List<Client> SearchClients(Client searchParams)
+        {
+            string searchQuery = @"SELECT * FROM clients
+                                        WHERE";
+            string searchClientName = "";
+            string searchBranch = "";
+            string andString = "";
+
+            if (searchParams.ClientName != null && searchParams.ClientName != "")
+            {
+                searchClientName = string.Format(@" client_name LIKE ""%{0}%""", searchParams.ClientName);
+                andString = "AND ";
+            }
+            if (searchParams.BranchID != null && searchParams.BranchID != 0)
+            {
+                searchBranch = string.Format(@" {0}branch_id={1}", andString, searchParams.BranchID);
+            }
+
+            string fullSearch = searchQuery + searchClientName + searchBranch;
+
+            List<Client> clients = GetClients(fullSearch);
+            return clients;
+        }
     }
 }

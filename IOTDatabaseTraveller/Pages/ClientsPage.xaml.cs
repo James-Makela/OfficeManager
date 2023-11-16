@@ -33,6 +33,8 @@ namespace IOTDatabaseTraveller
         {
             ListView_Clients.DataContext = null;
             ListView_Clients.DataContext = manager.GetClients();
+            ComboBox_Branch.ItemsSource = manager.GetBranchNames();
+            ComboBox_Branch.SelectedIndex = 0;
         }
 
         private void Button_AddClient_Click(object sender, RoutedEventArgs e)
@@ -70,6 +72,35 @@ namespace IOTDatabaseTraveller
             EditClientWindow editClientWindow = new(selectedClient);
             editClientWindow.Owner = Application.Current.MainWindow;
             editClientWindow.ShowDialog();
+            ReloadClients();
+        }
+
+        private void Button_SearchClient_Click(object sender, RoutedEventArgs e)
+        {
+            int? branchID = null;
+            if (ComboBox_Branch.SelectedItem != null)
+            {
+                branchID = ((ComboBoxStringIdItem)ComboBox_Branch.SelectedItem).GetID();
+            }
+            Client searchClient = new()
+            {
+                ClientName = TextBox_SearchClientName.Text,
+                BranchID = branchID,
+            };
+            if (searchClient.BranchID == 0 && searchClient.ClientName == "")
+            {
+                ReloadClients();
+                return;
+            }
+
+            ListView_Clients.DataContext = null;
+            ListView_Clients.DataContext = manager.SearchClients(searchClient);
+        }
+
+        private void Button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox_SearchClientName.Clear();
+            ComboBox_Branch.SelectedIndex = 0;
             ReloadClients();
         }
     }
