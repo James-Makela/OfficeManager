@@ -20,6 +20,33 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <GroupBox Header="Search" Margin="10" Grid.Column="1">
+            <Grid>
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" >
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Supplier Name:"/>
+                        <TextBox x:Name="TextBox_SearchSupplierName" Height="23" Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Product:" />
+                        <TextBox x:Name="TextBox_SearchProduct" Height="23" Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Branch:" />
+                        <ComboBox x:Name="ComboBox_Branch" Height="23" Width="100" />
+                    </StackPanel>
+                </WrapPanel>
+                <Button x:Name="Button_Search" Content="Search" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" IsDefault="True" Click="Button_Search_Click" />
+                <Button x:Name="Button_ClearSearch" Content="Clear" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" IsCancel="True" Click="Button_ClearSearch_Click" />
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Button x:Name="Button_AddBranchSupplier" Content="Add" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_AddBranchSupplier_Click" />
+            <Button x:Name="Button_RemoveBranchSupplier" Content="Remove" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_RemoveBranchSupplier_Click" />
+            <Button x:Name="Button_EditBranchSupplier" Content="Edit" Margin="5" Width="120" HorizontalAlignment="Center" Click="Button_EditBranchSupplier_Click" />
+        </StackPanel>
+
         <!-- Code for the listview for branch suppliers data -->
         <ListView x:Name="ListView_BranchSuppliers" ItemsSource="{Binding}" Margin="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>

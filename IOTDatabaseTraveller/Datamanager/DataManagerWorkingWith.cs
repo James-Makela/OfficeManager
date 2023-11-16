@@ -77,8 +77,19 @@ namespace IOTDatabaseTraveller.Datamanager
 
         public List<WorksWith> SearchWorksWith(WorksWith searchParams)
         {
-            string searchQuery = @"SELECT * FROM working_with
-                                    WHERE";
+            string searchQuery = @"SELECT 
+                                working_with.employee_id,
+                                working_with.client_id,
+	                            CONCAT(given_name, ' ', family_name) as name,
+	                            client_name,
+                                total_sales,
+	                            working_with.created_at,
+	                            working_with.updated_at
+                            FROM working_with
+                            JOIN clients ON clients.id=working_with.client_id
+                            JOIN employees ON employee_id=employees.id
+                            {0}
+                             ORDER BY name";
 
             string searchClient = "";
             string searchEmployee = "";
@@ -86,15 +97,16 @@ namespace IOTDatabaseTraveller.Datamanager
 
             if (searchParams.ClientID != 0)
             {
-                searchClient = string.Format(" client_id={0}", searchParams.ClientID);
+                searchClient = string.Format(" working_with.client_id={0}", searchParams.ClientID);
                 andString = "AND ";
             }
             if (searchParams.EmployeeID != 0)
             {
-                searchEmployee = string.Format(" {0}employee_id={1}", andString, searchParams.EmployeeID);
+                searchEmployee = string.Format(" {0}working_with.employee_id={1}", andString, searchParams.EmployeeID);
             }
 
-            string fullSearch = searchQuery + searchClient + searchEmployee;
+            string whereQuery = "WHERE" + searchClient + searchEmployee;
+            string fullSearch = string.Format(searchQuery, whereQuery);
             List<WorksWith> result = GetWorksWiths(fullSearch);
             return result;
         }

@@ -1,0 +1,42 @@
+﻿<Window x:Class="IOTDatabaseTraveller.EditBranchSupplierWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IOTDatabaseTraveller"
+        mc:Ignorable="d"
+        Title="EditBranchSupplier" Height="380" Width="400"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Edit Branch Supplier" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" />
+
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label Content="Supplier ID:" HorizontalContentAlignment="Right" Margin="2" Height="25" />
+            <Label Content="Branch:" HorizontalContentAlignment="Right" Margin="2" Height="25" />
+            <Label Content="Supplier Name:" HorizontalContentAlignment="Right" Margin="2" Height="25" />
+            <Label Content="Product Supplied:" HorizontalContentAlignment="Right" Margin="2" Height="25" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBox x:Name="TextBox_SupplierID" HorizontalAlignment="Left" Width="200" Margin="2" Height="25" IsEnabled="False" />
+            <ComboBox x:Name="ComboBox_BranchName" HorizontalAlignment="Left" Width="200" Margin="2" Height="25" />
+            <TextBox x:Name="TextBox_SupplierName" HorizontalAlignment="Left" Width="200" Margin="2" Height="25" />
+            <TextBox x:Name="TextBox_ProductSupplied" HorizontalAlignment="Left" Width="200" Margin="2" Height="25" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Button_Cancel" Content="Cancel" Margin="5" VerticalAlignment="Center" Width="100" IsCancel="True" Click="Button_Cancel_Click" />
+            <Button x:Name="Button_SaveBranchSupplier" Content="Save" Margin="5" VerticalAlignment="Center" Width="100" IsDefault="True" Click="Button_SaveBranchSupplier_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
