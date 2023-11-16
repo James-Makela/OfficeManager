@@ -75,7 +75,6 @@ namespace IOTDatabaseTraveller.Datamanager
         }
 
 
-        // TODO: Change order of functions, determine a standard order for this project
         public List<WorksWith> SearchWorksWith(WorksWith searchParams)
         {
             string searchQuery = @"SELECT * FROM working_with
