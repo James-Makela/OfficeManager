@@ -43,11 +43,11 @@ namespace IOTDatabaseTraveller
         {
             WorksWith searchWorksWithItem = new()
             {
-                ClientID = ((ComboBoxStringIdItem)ComboBox_SearchClient.SelectedItem).GetID(),
+                ClientName = ((ComboBoxStringIdItem)ComboBox_SearchClient.SelectedItem).ToString(),
                 EmployeeID = ((ComboBoxStringIdItem)ComboBox_SearchEmployee.SelectedItem).GetID(),
             };
 
-            if ((searchWorksWithItem.EmployeeID == 0) && (searchWorksWithItem.ClientID == 0))
+            if ((searchWorksWithItem.EmployeeID == 0) && (searchWorksWithItem.ClientName == "All"))
             {
                 ReloadWorksWith();
                 return;

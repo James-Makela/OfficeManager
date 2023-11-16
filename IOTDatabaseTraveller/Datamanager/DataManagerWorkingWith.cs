@@ -95,9 +95,9 @@ namespace IOTDatabaseTraveller.Datamanager
             string searchEmployee = "";
             string andString = "";
 
-            if (searchParams.ClientID != 0)
+            if (searchParams.ClientName != "All")
             {
-                searchClient = string.Format(" working_with.client_id={0}", searchParams.ClientID);
+                searchClient = string.Format(@" client_name LIKE ""%{0}%""", searchParams.ClientName);
                 andString = "AND ";
             }
             if (searchParams.EmployeeID != 0)
